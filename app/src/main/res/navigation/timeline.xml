@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/timeline"
+        app:startDestination="@+id/timeline">
+
+    <fragment
+            android:id="@+id/timeline"
+            android:name="ru.holofox.anicoubs.ui.timeline.list.TimeLineListFragment"
+            android:label="Timeline"
+            tools:layout="@layout/timeline_list_fragment"/>
+
+    <fragment
+            android:id="@+id/timelineDetail"
+            android:name="ru.holofox.anicoubs.ui.timeline.detail.TimeLineDetailFragment"
+            android:label="timeline_detail"
+            tools:layout="@layout/timeline_detail_fragment"/>
+
+</navigation>

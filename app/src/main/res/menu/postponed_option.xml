@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/option_item_publish"
+            android:title="@string/option_item_publish" />
+    <item
+            android:id="@+id/option_item_show_post"
+            android:title="@string/option_item_show_post" />
+    <item
+            android:id="@+id/option_item_delete"
+            android:title="@string/option_item_delete" />
+</menu>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/postponed"
+        app:startDestination="@+id/postponed">
+
+    <fragment
+            android:id="@+id/postponed"
+            android:name="ru.holofox.anicoubs.ui.postponed.list.PostponedListFragment"
+            android:label="Postponed"
+            tools:layout="@layout/postponed_list_fragment">
+        <action
+                android:id="@+id/action_postponed_to_postponedDetail"
+                app:destination="@id/postponedDetail" />
+    </fragment>
+
+    <fragment
+            android:id="@+id/postponedDetail"
+            android:name="ru.holofox.anicoubs.ui.postponed.detail.PostponedDetailFragment"
+            android:label="Postponed"
+            tools:layout="@layout/postponed_detail_fragment"/>
+
+</navigation>

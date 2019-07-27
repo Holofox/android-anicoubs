@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#304FFE</color>
+    <color name="colorPrimaryDark">#0026CA</color>
+    <color name="colorAccent">@color/colorPrimary</color>
+
+    <color name="colorPinkLight">#F48FB1</color>
+    <color name="colorGreenLight">#a5d6a7</color>
+    <color name="colorBlueLight">#536dfe</color>
+
+    <color name="colorSecondary">@color/colorPrimary</color>
+
+    <color name="colorSubtitle">#BDBDBD</color>
+    <color name="colorBackground">#EFEFEF</color>
+
+    <color name="colorGray">#757575</color>
+    <color name="colorDarkGray">#121212</color>
+
+    <color name="chipIconTint">#EBEBEB</color>
+    <color name="activeIcons">#FFFFFF</color>
+    <color name="inactiveIcons">#BFFFFFFF</color>
+
+    <color name="colorTags">#2B587A</color>
+
+</resources>
