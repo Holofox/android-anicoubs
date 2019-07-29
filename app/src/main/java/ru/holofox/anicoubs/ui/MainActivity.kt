@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
@@ -30,8 +29,6 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
 import ru.holofox.anicoubs.databinding.ActivityMainBinding
-import ru.holofox.anicoubs.internal.enums.UnitDialog
-import ru.holofox.anicoubs.internal.enums.UnitDialog.*
 import ru.holofox.anicoubs.internal.observer.EventObserver
 import ru.holofox.anicoubs.ui.extensions.setupWithNavController
 import ru.holofox.anicoubs.ui.main.MainViewModel
@@ -68,8 +65,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState
 
-        observeEventDialogs()
-
+        observeIsDialogShown()
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
@@ -104,77 +100,75 @@ class MainActivity : AppCompatActivity(), KodeinAware {
         currentNavController = controller
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return currentNavController?.value?.navigateUp() ?: false
-    }
+    override fun onSupportNavigateUp(): Boolean =
+        currentNavController?.value?.navigateUp() ?: false
 
-    private fun observeEventDialogs() {
-     viewModel.dialog.observe(this, EventObserver {
-             onDialogShow(it)
-             Log.i("observeEventDialogs", it.toString())
-         })
-    }
-
-    private fun onDialogShow(state: UnitDialog) {
-        when (state) {
-            INPUT_DIALOG -> onInputDialog()
-            LIST_DIALOG -> onListDialog()
-            DATETIME_DIALOG -> onDateTimeDialog()
-        }
+    private fun observeIsDialogShown() {
+        viewModel.isDialogShown.observe(this, EventObserver { isDialogShown ->
+            if (isDialogShown) onInputDialog()
+        })
     }
 
     private fun onInputDialog() {
-
         MaterialDialog(this).show {
+            lifecycleOwner(this@MainActivity)
             title(R.string.dialog_title_add)
             input(
                 hint = getString(R.string.dialog_input_url_placeholder),
                 waitForPositiveButton = false,
-                maxLength = 28
+                maxLength = 28,
+                prefill = viewModel.coubLink.value
             ) { dialog, text ->
                 val inputField = dialog.getInputField()
                 val regex = Regex("^http(s)?://coub.com/view/(\\w{5,6})$")
                 val isValid = regex.containsMatchIn(input = text)
 
-                inputField.error = if (isValid) null else getString(
-                    R.string.dialog_warning_not_valid_url)
-
+                inputField.error = if (isValid) null else getString(R.string.dialog_warning_not_valid_url)
+                if (isValid) viewModel.onCoubLinkEntered(text)
                 dialog.setActionButtonEnabled(WhichButton.POSITIVE, isValid)
             }
-            checkBoxPrompt(R.string.dialog_checkbox_postponed, isCheckedDefault = true) { postponed ->
-                //toast("Checked? $checked")
+            checkBoxPrompt(
+                R.string.dialog_checkbox_postponed,
+                isCheckedDefault = viewModel.isPostponedPublish.value!!) {
+                viewModel.onPostponedPublish(it)
             }
             negativeButton(R.string.dialog_button_cancel)
             positiveButton(R.string.dialog_button_confirm) {
-                viewModel.onDialogShown(LIST_DIALOG)
+                onListDialog()
             }
-            lifecycleOwner(this@MainActivity)
         }
     }
 
     private fun onListDialog() {
         MaterialDialog(this).show {
-            title(R.string.dialog_title_choose_category)
-            listItemsSingleChoice(R.array.dialog_categories_list, initialSelection = 0)
-            positiveButton(R.string.dialog_button_choose) {
-                viewModel.onDialogShown(DATETIME_DIALOG)
-            }
             lifecycleOwner(this@MainActivity)
+            title(R.string.dialog_title_choose_category)
+            listItemsSingleChoice(
+                R.array.dialog_categories_list,
+                initialSelection = viewModel.categoryId.value!!
+            ) { _, index, _ ->
+                viewModel.onSelectedCategory(index)
+            }
+            positiveButton(R.string.dialog_button_choose) {
+                if (viewModel.isPostponedPublish.value!!)
+                    onDateTimeDialog()
+            }
         }
     }
 
     private fun onDateTimeDialog() {
         MaterialDialog(this).show {
+            lifecycleOwner(this@MainActivity)
             title(R.string.dialog_title_select_datetime)
             dateTimePicker(
                 requireFutureDateTime = true,
-                show24HoursView = true) { _, dateTime ->
-                // Use dateTime (Calendar)
+                currentDateTime = viewModel.publishDate.value,
+                show24HoursView = true
+            ) { _, dateTime ->
+                viewModel.onPublishDate(dateTime)
             }
             negativeButton(R.string.dialog_button_cancel)
             positiveButton(R.string.dialog_button_ok)
-
-            lifecycleOwner(this@MainActivity)
         }
     }
 

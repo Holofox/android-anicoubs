@@ -6,7 +6,6 @@
 
     <data>
         <import type="ru.holofox.anicoubs.internal.bindings.BindingConverters"/>
-        <import type="ru.holofox.anicoubs.internal.enums.UnitDialog"/>
         <variable
                 name="mainViewModel"
                 type="ru.holofox.anicoubs.ui.main.MainViewModel" />
@@ -48,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:src="@drawable/ic_add"
-                android:onClick="@{() -> mainViewModel.onDialogShown(UnitDialog.INPUT_DIALOG)}"
+                android:onClick="@{() -> mainViewModel.onAddDialogShown()}"
                 app:fabSize="normal"
                 app:layout_anchor="@id/bottom_nav"
                 app:layout_anchorGravity="top|end"

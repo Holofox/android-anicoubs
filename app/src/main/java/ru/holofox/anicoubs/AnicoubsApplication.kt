@@ -61,7 +61,7 @@ class AnicoubsApplication: Application(), KodeinAware {
         // Provider
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind<ConnectivityProvider>() with singleton { ConnectivityProviderImpl(instance()) }
-        bind() from provider { MainViewProvider(instance()) }
+        bind() from provider { MainViewProvider(instance(), instance()) }
         bind() from provider { PostponedListViewModelProvider(instance(), instance()) }
         bind() from provider { TimeLineListViewModelProvider(instance(), instance(), instance()) }
     }
