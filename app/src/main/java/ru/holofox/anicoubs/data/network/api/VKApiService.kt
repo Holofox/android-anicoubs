@@ -3,13 +3,13 @@ package ru.holofox.anicoubs.data.network.api
 import ru.holofox.anicoubs.data.network.response.VKWallGetResponse
 import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
 import ru.holofox.anicoubs.data.network.response.VKVideoSaveResponse
-import ru.holofox.anicoubs.data.network.response.VKWallGetByIdResponse
+import ru.holofox.anicoubs.data.network.response.VKWallPostResponse
 
 class VKApiService {
 
     companion object METHODS {
         private const val WALL_GET = "wall.get"
-        private const val WALL_GET_BY_ID = "wall.getById"
+        private const val WALL_POST = "wall.post"
         private const val VIDEO_SAVE = "video.save"
     }
 
@@ -20,11 +20,11 @@ class VKApiService {
         override val classToken = VKWallGetResponse::class.java
     }
 
-    class WallGetById(parameters: VKParameters) : VKBaseApiCommand<VKWallGetByIdResponse>(
+    class WallPost(parameters: VKParameters) : VKBaseApiCommand<VKWallPostResponse>(
         parameters = parameters,
-        method = WALL_GET_BY_ID
+        method = WALL_POST
     ) {
-        override val classToken = VKWallGetByIdResponse::class.java
+        override val classToken = VKWallPostResponse::class.java
     }
 
     class VideoSave(parameters: VKParameters) : VKBaseApiCommand<VKVideoSaveResponse>(

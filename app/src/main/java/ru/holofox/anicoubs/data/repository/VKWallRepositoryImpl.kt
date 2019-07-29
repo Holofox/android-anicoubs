@@ -1,5 +1,7 @@
 package ru.holofox.anicoubs.data.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -12,6 +14,8 @@ import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
 import ru.holofox.anicoubs.data.db.unitlocalized.vk.asDomainModel
 import ru.holofox.anicoubs.data.network.data.VKWallDataSource
 import ru.holofox.anicoubs.data.network.response.VKWallGetResponse
+import ru.holofox.anicoubs.data.network.response.VKWallPostResponse
+import ru.holofox.anicoubs.internal.dto.NetworkResult
 
 class VKWallRepositoryImpl(
     private val vkWallDao: VKWallDao,
@@ -22,10 +26,17 @@ class VKWallRepositoryImpl(
         it.asDomainModel()
     }
 
+    private val _postWallResult = MutableLiveData<NetworkResult<VKWallPostResponse>>()
+    override val postWallResult: LiveData<NetworkResult<VKWallPostResponse>>
+        get() = _postWallResult
+
     init {
         vkNetworkDataSource.apply {
             vkWallGetResponse.observeForever { items ->
                 persistFetchedVKWall(items)
+            }
+            vkWallPostResponse.observeForever {
+                _postWallResult.value = it
             }
         }
     }
@@ -38,7 +49,9 @@ class VKWallRepositoryImpl(
     }
 
     override suspend fun wallPost(parameters: VKParameters) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return withContext(Dispatchers.IO) {
+            vkNetworkDataSource.wallPost(parameters)
+        }
     }
 
     private fun persistFetchedVKWall(vkWallGetResponse: VKWallGetResponse) {
