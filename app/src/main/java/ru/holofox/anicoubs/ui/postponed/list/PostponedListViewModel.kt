@@ -10,30 +10,24 @@ import ru.holofox.anicoubs.data.repository.VKWallRepository
 import ru.holofox.anicoubs.internal.Constants.NETWORK_ERROR_SHOWN
 import ru.holofox.anicoubs.internal.Constants.TARGET_GROUP_ID
 import ru.holofox.anicoubs.internal.NoConnectivityException
-import ru.holofox.anicoubs.internal.observer.SingleEvent
 import ru.holofox.anicoubs.ui.base.ScopedViewModel
 
 class PostponedListViewModel(
-    vkWallRepository: VKWallRepository,
-    savedStateHandle: SavedStateHandle
+    private val vkWallRepository: VKWallRepository,
+    private val savedStateHandle: SavedStateHandle
 ) : ScopedViewModel() {
 
-    private val repository = vkWallRepository
-    private val savedState = savedStateHandle
-
-    val wall = repository.wall
+    val wall = vkWallRepository.wall
 
     private val _isLoading = MutableLiveData(false)
-    private val _eventNetworkError = MutableLiveData(false)
-    private val _isNetworkErrorShown : MutableLiveData<Boolean>
-            = savedStateHandle.getLiveData(NETWORK_ERROR_SHOWN, false)
-
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
+    private val _eventNetworkError = MutableLiveData(false)
     val eventNetworkError: LiveData<Boolean>
         get() = _eventNetworkError
 
+    private val _isNetworkErrorShown = savedStateHandle.getLiveData(NETWORK_ERROR_SHOWN, false)
     val isNetworkErrorShown : LiveData<Boolean>
         get() = _isNetworkErrorShown
 
@@ -51,10 +45,10 @@ class PostponedListViewModel(
             .build()
 
         try {
-            repository.wallGet(parameters)
+            vkWallRepository.wallGet(parameters)
             _isLoading.value = true
             _eventNetworkError.value = false
-            savedState.set(NETWORK_ERROR_SHOWN, false)
+            savedStateHandle.set(NETWORK_ERROR_SHOWN, false)
         }
         catch (e: NoConnectivityException) {
             _eventNetworkError.value = true
@@ -65,8 +59,7 @@ class PostponedListViewModel(
         }
     }
 
-    fun onNetworkErrorShown() {
-        savedState.set(NETWORK_ERROR_SHOWN, true)
-    }
+    fun onNetworkErrorShown() =
+        savedStateHandle.set(NETWORK_ERROR_SHOWN, true)
 
 }

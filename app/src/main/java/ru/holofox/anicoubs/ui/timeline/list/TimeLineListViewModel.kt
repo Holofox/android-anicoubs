@@ -12,9 +12,9 @@ import ru.holofox.anicoubs.internal.NoConnectivityException
 import ru.holofox.anicoubs.ui.base.ScopedViewModel
 
 class TimeLineListViewModel(
-    anicoubsRepository: AnicoubsRepository,
-    unitProvider: UnitProvider,
-    savedStateHandle : SavedStateHandle
+    private val anicoubsRepository: AnicoubsRepository,
+    private val unitProvider: UnitProvider,
+    private val savedStateHandle : SavedStateHandle
 ) : ScopedViewModel() {
 
     /* private val unitSystem = unitProvider.getUnitProvider()
@@ -22,15 +22,11 @@ class TimeLineListViewModel(
     private val isEnglish: Boolean
         get() = unitSystem == UnitSystem.EN */
 
-    private val repository = anicoubsRepository
-    private val savedState = savedStateHandle
-
-    val timeline = repository.timeline
+    val timeline = anicoubsRepository.timeline
 
     private val _isLoading = MutableLiveData(false)
     private val _eventNetworkError = MutableLiveData(false)
-    private val _isNetworkErrorShown : MutableLiveData<Boolean>
-            = savedStateHandle.getLiveData(NETWORK_ERROR_SHOWN, false)
+    private val _isNetworkErrorShown = savedStateHandle.getLiveData(NETWORK_ERROR_SHOWN, false)
 
     val isLoading: LiveData<Boolean>
         get() = _isLoading
@@ -47,10 +43,10 @@ class TimeLineListViewModel(
 
     fun refreshDataFromRepository() = launch {
         try {
-            repository.getTimeLine(false)
+            anicoubsRepository.getTimeLine(false)
             _isLoading.value = true
             _eventNetworkError.value = false
-            savedState.set(NETWORK_ERROR_SHOWN, false)
+            savedStateHandle.set(NETWORK_ERROR_SHOWN, false)
         }
         catch (e: NoConnectivityException) {
             Log.e("Connectivity", "No internet connection!", e)
@@ -61,8 +57,7 @@ class TimeLineListViewModel(
         }
     }
 
-    fun onNetworkErrorShown() {
-        savedState.set(NETWORK_ERROR_SHOWN, true)
-    }
+    fun onNetworkErrorShown() =
+        savedStateHandle.set(NETWORK_ERROR_SHOWN, true)
 
 }
