@@ -2,7 +2,6 @@ package ru.holofox.anicoubs.ui.postponed.list
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +9,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 
 import com.google.android.material.snackbar.Snackbar
 
@@ -19,8 +19,6 @@ import org.kodein.di.generic.instance
 
 import ru.holofox.anicoubs.R
 import ru.holofox.anicoubs.databinding.PostponedListFragmentBinding
-import ru.holofox.anicoubs.internal.observer.EventObserver
-import ru.holofox.anicoubs.ui.base.DataBindingAdapter
 
 class PostponedListFragment : Fragment(), KodeinAware {
 
@@ -34,6 +32,33 @@ class PostponedListFragment : Fragment(), KodeinAware {
     }
     private val viewModelProvider: PostponedListViewModelProvider by instance()
     private var viewModelAdapter: PostponedListAdapter? = null
+
+    private val onItemMore: (View) -> Unit = {
+        PopupMenu(it.context, it).apply {
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.option_item_publish -> {
+                        // viewModel.onMenuItemPublish()
+                        true
+                    }
+
+                    R.id.option_item_show_post -> {
+                        // Show
+                        true
+                    }
+
+                    R.id.option_item_delete -> {
+                        // viewModel.onMenuItemDelete()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+            inflate(R.menu.postponed_option)
+            show()
+        }
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -54,11 +79,12 @@ class PostponedListFragment : Fragment(), KodeinAware {
         )
 
         viewModelAdapter = PostponedListAdapter().apply {
-            setOnItemClickListener(object : DataBindingAdapter.OnItemClickListener {
-                override fun onItemClick(view: View) {
-                    //TODO: Implement
+            setOnItemViewClickListener({view, _, _ ->
+                when (view.id) {
+                   // R.id.cardView_postponed -> showPostponedDetail(view)
+                    R.id.imageView_more -> onItemMore(view)
                 }
-            })
+            }, R.id.cardView_postponed, R.id.imageView_more)
         }
 
         binding.apply {
@@ -94,31 +120,9 @@ class PostponedListFragment : Fragment(), KodeinAware {
         }
     }
 
-  /*  private val onItemMore: (View) -> Unit = {
-        PopupMenu(it.context, it).apply {
-            setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.option_item_publish -> {
-                        //viewModel.onMenuItemPublish()
-                        true
-                    }
-
-                    R.id.option_item_show_post -> {
-                        // Show
-                        true
-                    }
-
-                    R.id.option_item_delete -> {
-                        // viewModel.onMenuItemDelete()
-                        true
-                    }
-
-                    else -> false
-                }
-            }
-            inflate(R.menu.postponed_option)
-            show()
-        }
+    private fun showPostponedDetail(view: View) {
+        val actionDetail = PostponedListFragmentDirections.actionPostponedListToPostponedDetail()
+        Navigation.findNavController(view).navigate(actionDetail)
     }
-  */
+
 }

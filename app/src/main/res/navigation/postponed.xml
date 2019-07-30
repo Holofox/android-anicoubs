@@ -4,7 +4,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/postponed"
-        app:startDestination="@+id/postponed">
+        app:startDestination="@+id/postponed"
+        tools:ignore="UnusedNavigation">
 
     <fragment
             android:id="@+id/postponed"
@@ -12,7 +13,7 @@
             android:label="Postponed"
             tools:layout="@layout/postponed_list_fragment">
         <action
-                android:id="@+id/action_postponed_to_postponedDetail"
+                android:id="@+id/action_postponedList_to_postponedDetail"
                 app:destination="@id/postponedDetail" />
     </fragment>
 

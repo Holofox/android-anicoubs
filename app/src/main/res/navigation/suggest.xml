@@ -4,7 +4,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/suggest"
-        app:startDestination="@+id/suggest">
+        app:startDestination="@+id/suggest"
+        tools:ignore="UnusedNavigation">
 
     <fragment
             android:id="@+id/suggest"

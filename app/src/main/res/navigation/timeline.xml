@@ -4,13 +4,18 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/timeline"
-        app:startDestination="@+id/timeline">
+        app:startDestination="@+id/timeline"
+        tools:ignore="UnusedNavigation">
 
     <fragment
             android:id="@+id/timeline"
             android:name="ru.holofox.anicoubs.ui.timeline.list.TimeLineListFragment"
             android:label="Timeline"
-            tools:layout="@layout/timeline_list_fragment"/>
+            tools:layout="@layout/timeline_list_fragment">
+        <action
+                android:id="@+id/action_timelineList_to_timelineDetail"
+                app:destination="@id/timelineDetail" />
+    </fragment>
 
     <fragment
             android:id="@+id/timelineDetail"

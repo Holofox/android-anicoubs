@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation
 import com.google.android.material.snackbar.Snackbar
 
 import org.kodein.di.KodeinAware
@@ -53,11 +54,9 @@ class TimeLineListFragment : Fragment(), KodeinAware {
         binding.timelineListViewModel = viewModel
 
         viewModelAdapter = TimelineAdapter().apply {
-            setOnItemClickListener(object : DataBindingAdapter.OnItemClickListener {
-                override fun onItemClick(view: View) {
-                    //TODO: Implement
-                }
-            })
+            setOnItemViewClickListener({ view, _, _ ->
+                // showTimelineDetail(view)
+            }, R.id.cardView_timeline)
         }
 
         binding.apply {
@@ -74,7 +73,6 @@ class TimeLineListFragment : Fragment(), KodeinAware {
         viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
             if (isNetworkError) onNetworkError()
         })
-
     }
 
     private fun observeTimeline() {
@@ -91,6 +89,11 @@ class TimeLineListFragment : Fragment(), KodeinAware {
                 Snackbar.LENGTH_LONG).show()
             viewModel.onNetworkErrorShown()
         }
+    }
+
+    private fun showTimelineDetail(view: View) {
+        val actionDetail = TimeLineListFragmentDirections.actionTimelineListToTimelineDetail()
+        Navigation.findNavController(view).navigate(actionDetail)
     }
 
 }

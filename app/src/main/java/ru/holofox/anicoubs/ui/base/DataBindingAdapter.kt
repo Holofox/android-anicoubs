@@ -13,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class DataBindingAdapter<T>(
     private val variableId: Int,
     diffCallback: DiffUtil.ItemCallback<T>
-) :
-    ListAdapter<T, DataBindingAdapter.DataBindingViewHolder<T>>(diffCallback) {
+) : ListAdapter<T, DataBindingAdapter.DataBindingViewHolder<T>>(diffCallback) {
 
-    lateinit var listener: OnItemClickListener
+    private var list: List<T>? = emptyList()
+
+    private lateinit var onItemViewClick: ((View, T, Int) -> Unit?)
+    private lateinit var clickableIds: IntArray
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBindingViewHolder<T> {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -29,27 +31,36 @@ abstract class DataBindingAdapter<T>(
         holder.apply {
             bind(getItem(position))
 
-            if (::listener.isInitialized) {
-                itemView.setOnClickListener {
-                    listener.onItemClick(it)
+            if (::onItemViewClick.isInitialized && ::clickableIds.isInitialized) {
+                val clickListener = View.OnClickListener { view ->
+                    list?.get(holder.adapterPosition)?.let {
+                        onItemViewClick.invoke(view, it, holder.adapterPosition)
+                    }
+                }
+                for (clickableId in clickableIds) {
+                    holder.itemView.findViewById<View>(clickableId)?.setOnClickListener(clickListener)
                 }
             }
         }
     }
 
-    interface OnItemClickListener {
-        fun onItemClick(view: View)
+    override fun submitList(list: List<T>?) {
+        super.submitList(list)
+        this.list = list
     }
 
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        this.listener = listener
+   fun setOnItemViewClickListener(
+        onItemViewClick: (view: View, model: T, position: Int) -> Unit,
+        vararg ids: Int
+    ) {
+        this.onItemViewClick = onItemViewClick
+        this.clickableIds = ids
     }
 
     class DataBindingViewHolder<T>(
         private val binding: ViewDataBinding,
         private val variableId: Int
-    ) :
-        RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: T) {
             binding.setVariable(variableId, item)
