@@ -68,29 +68,31 @@
     <string name="option_item_show_post">Show post</string>
     <string name="option_item_delete">Delete</string>
 
-    <string name="no_internet_connection">Your network is unavailable.</string>
-    <string name="no_data">No data</string>
-
     <plurals name="quantity_views">
         <item quantity="one">%1$d view</item>
         <item quantity="other">%1$d views</item>
     </plurals>
 
+    <!-- Dialogs -->
     <string name="dialog_title_add">Add coub</string>
+    <string name="dialog_title_delete_entry">Delete entry</string>
+    <string name="dialog_title_publish_entry">Publish entry</string>
     <string name="dialog_title_choose_category">Choose a category</string>
     <string name="dialog_title_select_datetime">Select date &amp; time</string>
 
     <string name="dialog_message_coub_link">Coub link</string>
+    <string name="dialog_message_no_internet_connection">Your network is unavailable.</string>
+    <string name="dialog_message_confirm_publish">Are you sure want to publish this entry right now?</string>
+    <string name="dialog_message_confirm_delete">Are you sure want to delete this entry?</string>
 
     <string name="dialog_button_cancel">Cancel</string>
     <string name="dialog_button_confirm">Confirm</string>
     <string name="dialog_button_ok">OK</string>
     <string name="dialog_button_choose">Choose</string>
+    <string name="dialog_button_retry">Retry</string>
 
     <string name="dialog_warning_not_valid_url">Does not appear to be a valid URL</string>
-
     <string name="dialog_checkbox_postponed">Postponed posting</string>
-
     <string name="dialog_input_url_placeholder">https://coub.com/view/aabbcc</string>
 
     <string-array name="dialog_categories_list">

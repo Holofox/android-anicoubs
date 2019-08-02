@@ -10,28 +10,32 @@ class VKApiService {
     companion object METHODS {
         private const val WALL_GET = "wall.get"
         private const val WALL_POST = "wall.post"
+        private const val WALL_DELETE = "wall.delete"
         private const val VIDEO_SAVE = "video.save"
     }
 
     class WallGet(parameters: VKParameters) : VKBaseApiCommand<VKWallGetResponse>(
         parameters = parameters,
-        method = WALL_GET
-    ) {
-        override val classToken = VKWallGetResponse::class.java
-    }
+        method = WALL_GET,
+        classToken = VKWallGetResponse::class.java
+    )
 
     class WallPost(parameters: VKParameters) : VKBaseApiCommand<VKWallPostResponse>(
         parameters = parameters,
-        method = WALL_POST
-    ) {
-        override val classToken = VKWallPostResponse::class.java
-    }
+        method = WALL_POST,
+        classToken = VKWallPostResponse::class.java
+    )
+
+    class WallDelete(parameters: VKParameters) : VKBaseApiCommand<Boolean>(
+        parameters = parameters,
+        method = WALL_DELETE,
+        classToken = Boolean::class.java
+    )
 
     class VideoSave(parameters: VKParameters) : VKBaseApiCommand<VKVideoSaveResponse>(
         parameters = parameters,
-        method = VIDEO_SAVE
-    ){
-        override val classToken = VKVideoSaveResponse::class.java
-    }
+        method = VIDEO_SAVE,
+        classToken = VKVideoSaveResponse::class.java
+    )
 
 }

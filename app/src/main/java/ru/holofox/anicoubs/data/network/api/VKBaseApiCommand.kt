@@ -14,10 +14,9 @@ import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
 
 abstract class VKBaseApiCommand<T: Any>(
     private val parameters: VKParameters,
-    private val method: String
+    private val method: String,
+    private val classToken: Class<T>
 ) : ApiCommand<T>() {
-
-    protected abstract val classToken: Class<T>
 
     companion object {
         private const val API_VERSION = "5.101"
@@ -28,6 +27,7 @@ abstract class VKBaseApiCommand<T: Any>(
             .method(method)
             .args(parameters.args)
             .version(API_VERSION) // or default - manager.config.version
+            .retryCount(3)
             .build()
 
         return manager.execute(call, ResponseApiParser(classToken))
