@@ -21,7 +21,7 @@ data class VKWallEntry(
     override val date: LocalDateTime,
     @ColumnInfo(name = "fromId")
     override val fromId: Int,
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "postId")
     override val id: Int,
     @ColumnInfo(name = "isFavorite")
     override val isFavorite: Boolean,

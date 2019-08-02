@@ -9,7 +9,8 @@ data class GroupEntry(
     @SerializedName("admin_level")
     val adminLevel: Int,
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    @SerializedName("id")
+    val groupId: Int,
     @SerializedName("is_admin")
     val isAdmin: Int,
     @SerializedName("is_advertiser")

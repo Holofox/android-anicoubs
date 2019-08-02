@@ -5,11 +5,12 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import ru.holofox.anicoubs.data.db.entity.vk.wall.*
 
-@Entity(tableName = "vk_wall") // , indices = [Index(value = ["created_by"], unique = true)]
+@Entity(tableName = "vk_wall")
 
 data class WallItemEntry(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    @SerializedName("id")
+    val postId: Int,
     @SerializedName("from_id")
     val fromId: Int,
     @SerializedName("owner_id")

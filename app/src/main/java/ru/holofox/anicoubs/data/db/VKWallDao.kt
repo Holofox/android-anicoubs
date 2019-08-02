@@ -18,21 +18,30 @@ interface VKWallDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(post: List<WallItemEntry>, group: List<GroupEntry>)
 
-    @Query("select * from vk_wall order by id desc")
+    @Query("select * from vk_wall order by postId desc")
     fun getWall() : LiveData<List<VKWallEntry>>
 
-    @Query("select * from vk_wall, vk_groups where vk_wall.ownerId == -vk_groups.id") // order by id desc
+    @Query("select * from vk_wall, vk_groups where vk_wall.ownerId == -vk_groups.groupId")
     fun getWallMinimal() : LiveData<List<VKWallMinimalEntry>>
 
     @Query("select * from vk_groups")
     fun getGroup() : LiveData<List<VKGroupsEntry>>
 
-    /* @Query("select date from vk_wall order by date desc limit 1")
-    fun getOlder() : LocalDateTime */
+    @Transaction
+    fun update(post: List<WallItemEntry>, group: List<GroupEntry>) {
+        deleteAll()
+        insert(post, group)
+    }
 
-    @Query("select count(id) from vk_wall where date >= :startDate")
+    @Query("select count(postId) from vk_wall where date >= :startDate")
     fun count(startDate: Long) : Int
+
+    @Query("delete from vk_wall where postId = :postId")
+    fun delete(postId: Int)
 
     @Query("delete from vk_wall where date < :firstDateToKeep")
     fun deleteOldEntries(firstDateToKeep: Long)
+
+    @Query("delete from vk_wall")
+    fun deleteAll()
 }

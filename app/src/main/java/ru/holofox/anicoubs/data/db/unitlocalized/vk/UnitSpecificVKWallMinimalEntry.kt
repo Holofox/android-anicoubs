@@ -5,7 +5,7 @@ import ru.holofox.anicoubs.data.db.entity.vk.wall.Attachment
 import ru.holofox.anicoubs.data.db.entity.vk.wall.Views
 
 interface UnitSpecificVKWallMinimalEntry {
-    val id: Int
+    val postId: Int
     val ownerId: Int
     val date: LocalDateTime
     val text: String
@@ -16,4 +16,6 @@ interface UnitSpecificVKWallMinimalEntry {
     val name: String
 
     override fun equals(other: Any?) : Boolean
+
+    fun wallGroupUrl(): String
 }

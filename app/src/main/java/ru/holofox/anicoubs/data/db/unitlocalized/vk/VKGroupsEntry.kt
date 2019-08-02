@@ -5,7 +5,7 @@ import androidx.room.ColumnInfo
 class VKGroupsEntry (
     @ColumnInfo(name = "adminLevel")
     override val adminLevel: Int,
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "groupId")
     override val id: Int,
     @ColumnInfo(name = "isAdmin")
     override val isAdmin: Int,
