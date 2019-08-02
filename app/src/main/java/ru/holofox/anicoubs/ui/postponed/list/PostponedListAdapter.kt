@@ -18,7 +18,7 @@ class PostponedListAdapter :
         override fun areItemsTheSame(
             oldItem: UnitSpecificVKWallMinimalEntry,
             newItem: UnitSpecificVKWallMinimalEntry
-        ): Boolean = oldItem.id == newItem.id
+        ): Boolean = oldItem.postId == newItem.postId
 
         override fun areContentsTheSame(
             oldItem: UnitSpecificVKWallMinimalEntry,
