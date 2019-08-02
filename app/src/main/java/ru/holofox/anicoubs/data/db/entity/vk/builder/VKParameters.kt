@@ -18,6 +18,7 @@ class VKParameters(b: Builder) {
         fun noComments(noComments: Boolean) = apply { this.args["no_comments"] = if (noComments) "1" else "0" }
 
         fun ownerId(ownerId: Int) = apply { this.args["owner_id"] = ownerId.toString() }
+        fun postId(postId: Int) = apply { this.args["post_id"] = postId.toString() }
         fun domain(domain: String) = apply { this.args["domain"] = domain }
         fun offset(offset: Int) = apply { this.args["offset"] = offset.toString() }
         fun count(count: Int) = apply { this.args["count"] = count.toString() }
