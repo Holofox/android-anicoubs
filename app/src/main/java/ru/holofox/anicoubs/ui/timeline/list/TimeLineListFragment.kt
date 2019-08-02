@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import com.google.android.material.snackbar.Snackbar
 
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
@@ -17,7 +16,7 @@ import org.kodein.di.generic.instance
 
 import ru.holofox.anicoubs.R
 import ru.holofox.anicoubs.databinding.TimelineListFragmentBinding
-import ru.holofox.anicoubs.ui.base.DataBindingAdapter
+import ru.holofox.anicoubs.ui.extensions.indefiniteSnackbar
 
 class TimeLineListFragment : Fragment(), KodeinAware {
 
@@ -85,8 +84,11 @@ class TimeLineListFragment : Fragment(), KodeinAware {
 
     private fun onNetworkError() {
         if (!viewModel.isNetworkErrorShown.value!!) {
-            Snackbar.make(binding.recyclerView, getString(R.string.no_internet_connection),
-                Snackbar.LENGTH_LONG).show()
+            binding.constraintLayout.indefiniteSnackbar(
+                message = R.string.dialog_message_no_internet_connection,
+                actionText = R.string.dialog_button_retry) {
+                viewModel.refreshDataFromRepository()
+            }
             viewModel.onNetworkErrorShown()
         }
     }

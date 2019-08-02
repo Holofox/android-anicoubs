@@ -8,6 +8,8 @@ import org.threeten.bp.ZonedDateTime
 
 import ru.holofox.anicoubs.data.db.TimeLineDao
 import ru.holofox.anicoubs.data.db.unitlocalized.coub.asDomainModel
+import ru.holofox.anicoubs.data.network.NetworkException
+import ru.holofox.anicoubs.data.network.await
 import ru.holofox.anicoubs.data.network.data.TimeLineNetworkDataSource
 import ru.holofox.anicoubs.data.network.response.TimeLineResponse
 
@@ -18,14 +20,6 @@ class AnicoubsRepositoryImpl(
 
     override val timeline = Transformations.map(timelineDao.getTimeline()) {
         it.asDomainModel()
-    }
-
-    init {
-        timelineNetworkDataSource.apply {
-            loadedFeed.observeForever { newTimeLine ->
-                persistFetchedTimeLine(newTimeLine)
-            }
-        }
     }
 
     override suspend fun getTimeLine(clean: Boolean) {
@@ -53,7 +47,12 @@ class AnicoubsRepositoryImpl(
     }
 
     private suspend fun fetchTimeLine()  {
-        timelineNetworkDataSource.fetchFeed(0, 10)
+        try {
+            val result = timelineNetworkDataSource.fetchFeed(0, 10).await()
+            persistFetchedTimeLine(result)
+        } catch (error: NetworkException) {
+            throw AnicoubsRefreshError(error)
+        }
     }
 
     private fun isFetchTimeLineNeeded(lastFetchTime: ZonedDateTime): Boolean {
@@ -62,3 +61,5 @@ class AnicoubsRepositoryImpl(
     }
 
 }
+
+class AnicoubsRefreshError(cause: Throwable) : Throwable(cause.message, cause)

@@ -20,7 +20,6 @@ interface TimeLineApiService {
     fun getTimeLineAsync(
         @Query(value = "page") page: Int,
         @Query(value = "per_page") per_page: Int = 10
-      //  @Query(value = "order_by") order_by: String = "newest"
     ): Deferred<TimeLineResponse>
 
     companion object {
