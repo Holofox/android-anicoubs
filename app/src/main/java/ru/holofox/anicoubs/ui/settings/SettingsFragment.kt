@@ -57,6 +57,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
          */
 
         bindPreferenceSummaryToValue(requirePreference(getString(R.string.pref_key_name)))
+        bindPreferenceSummaryToValue(requirePreference(getString(R.string.pref_key_theme)))
         bindPreferenceSummaryToValue(requirePreference(getString(R.string.pref_key_language)))
     }
 

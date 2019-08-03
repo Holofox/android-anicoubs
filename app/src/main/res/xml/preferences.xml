@@ -3,19 +3,28 @@
 
     <PreferenceCategory android:title="@string/pref_header_general">
         <EditTextPreference
-                android:defaultValue="@string/pref_summary_user"
+                android:defaultValue="@string/pref_default_value_user"
                 android:key="@string/pref_key_name"
-                android:summary="@string/pref_summary_user"
+                android:summary="@string/pref_default_value_user"
                 android:title="@string/pref_title_your_name" />
 
         <ListPreference
-                android:defaultValue="@string/pref_summary_language"
-                android:dialogTitle="Select language"
+                android:defaultValue="@string/pref_default_value_theme"
+                android:dialogTitle="@string/pref_title_select_theme"
+                android:entries="@array/settings_list_preference_themes_titles"
+                android:entryValues="@array/settings_list_preference_themes_values"
+                android:key="@string/pref_key_theme"
+                android:summary="@string/pref_summary_theme"
+                android:title="@string/pref_title_theme" />
+
+        <ListPreference
+                android:defaultValue="@string/pref_default_value_language"
+                android:dialogTitle="@string/pref_title_select_language"
                 android:entries="@array/settings_list_preference_languages_titles"
                 android:entryValues="@array/settings_list_preference_languages_values"
                 android:key="@string/pref_key_language"
-                android:summary="Click to select language"
-                android:title="Language" />
+                android:summary="@string/pref_summary_language"
+                android:title="@string/pref_title_language" />
 
     </PreferenceCategory>
 
