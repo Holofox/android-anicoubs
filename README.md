@@ -40,7 +40,6 @@ This project follows Android architecture guidelines that are based on MVVM.
   - repository
 - internal
   - bindings
-  - dto
   - enums
   - glide
   - observer
