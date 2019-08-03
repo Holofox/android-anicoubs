@@ -17,7 +17,9 @@ class ConnectivityInterceptorImpl(
         if (!isOnline())
             throw NoConnectivityException()
         return chain
-            .withConnectTimeout(10, TimeUnit.SECONDS)
+            .withConnectTimeout(15, TimeUnit.SECONDS)
+            .withReadTimeout(15, TimeUnit.SECONDS)
+            .withWriteTimeout(15, TimeUnit.SECONDS)
             .proceed(chain.request())
     }
 

@@ -6,12 +6,12 @@ import androidx.lifecycle.SavedStateHandle
 import kotlinx.coroutines.launch
 import ru.holofox.anicoubs.data.provider.UnitProvider
 import ru.holofox.anicoubs.data.repository.AnicoubsRefreshError
-import ru.holofox.anicoubs.data.repository.AnicoubsRepository
+import ru.holofox.anicoubs.data.repository.CoubRepository
 import ru.holofox.anicoubs.internal.Constants.NETWORK_ERROR_SHOWN
 import ru.holofox.anicoubs.ui.base.ScopedViewModel
 
 class TimeLineListViewModel(
-    private val anicoubsRepository: AnicoubsRepository,
+    private val coubRepository: CoubRepository,
     private val unitProvider: UnitProvider,
     private val savedStateHandle : SavedStateHandle
 ) : ScopedViewModel() {
@@ -21,7 +21,7 @@ class TimeLineListViewModel(
     private val isEnglish: Boolean
         get() = unitSystem == UnitSystem.EN */
 
-    val timeline = anicoubsRepository.timeline
+    val timeline = coubRepository.timeline
 
     private val _isLoading = MutableLiveData(false)
     private val _eventNetworkError = MutableLiveData(false)
@@ -42,7 +42,7 @@ class TimeLineListViewModel(
 
     fun refreshDataFromRepository() = launch {
         try {
-            anicoubsRepository.getTimeLine(false)
+            coubRepository.getTimeLine(false)
             _isLoading.value = true
             _eventNetworkError.value = false
             savedStateHandle.set(NETWORK_ERROR_SHOWN, false)

@@ -48,7 +48,6 @@ class PostponedListViewModel(
             savedStateHandle.set(NETWORK_ERROR_SHOWN, false)
         } catch (error: VKWallRefreshError) {
             _eventNetworkError.value = true
-            onSnackBarShow(error.message)
         }
         finally {
             _isLoading.value = false

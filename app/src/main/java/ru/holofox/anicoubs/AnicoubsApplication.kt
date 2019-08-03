@@ -18,19 +18,13 @@ import org.kodein.di.generic.singleton
 
 import ru.holofox.anicoubs.data.db.*
 import ru.holofox.anicoubs.data.network.*
-import ru.holofox.anicoubs.data.network.api.TimeLineApiService
-import ru.holofox.anicoubs.data.network.data.TimeLineNetworkDataSource
-import ru.holofox.anicoubs.data.network.data.TimeLineNetworkDataSourceImpl
-import ru.holofox.anicoubs.data.network.data.VKWallDataSource
-import ru.holofox.anicoubs.data.network.data.VKNetworkDataSourceImpl
+import ru.holofox.anicoubs.data.network.api.CoubApiService
+import ru.holofox.anicoubs.data.network.data.*
 import ru.holofox.anicoubs.data.provider.ConnectivityProvider
 import ru.holofox.anicoubs.data.provider.ConnectivityProviderImpl
 import ru.holofox.anicoubs.data.provider.UnitProvider
 import ru.holofox.anicoubs.data.provider.UnitProviderImpl
-import ru.holofox.anicoubs.data.repository.AnicoubsRepository
-import ru.holofox.anicoubs.data.repository.AnicoubsRepositoryImpl
-import ru.holofox.anicoubs.data.repository.VKWallRepository
-import ru.holofox.anicoubs.data.repository.VKWallRepositoryImpl
+import ru.holofox.anicoubs.data.repository.*
 import ru.holofox.anicoubs.ui.LoginActivity
 import ru.holofox.anicoubs.ui.main.MainViewProvider
 import ru.holofox.anicoubs.ui.postponed.list.PostponedListViewModelProvider
@@ -43,25 +37,29 @@ class AnicoubsApplication: Application(), KodeinAware {
         bind() from singleton { AnicoubsDatabase(instance()) }
         bind() from singleton { instance<AnicoubsDatabase>().postFeedDao() }
         bind() from singleton { instance<AnicoubsDatabase>().vkDao()}
-        bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
 
+        bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
         bind<SavedStateHandle>() with singleton { SavedStateHandle() }
 
         // Api
-        bind() from singleton { TimeLineApiService(instance()) }
+        bind() from singleton { CoubApiService(instance()) }
+        // bind() from singleton { HolofoxApiService(instance()) }
 
         // Data source
         bind<TimeLineNetworkDataSource>() with singleton { TimeLineNetworkDataSourceImpl(instance()) }
         bind<VKWallDataSource>() with singleton { VKNetworkDataSourceImpl(instance()) }
+        bind<HolofoxNetworkDataSource>() with singleton { HolofoxNetworkDataSourceImpl(instance()) }
 
         // Repository
-        bind<AnicoubsRepository>() with singleton { AnicoubsRepositoryImpl(instance(), instance()) }
+        bind<CoubRepository>() with singleton { CoubRepositoryImpl(instance(), instance()) }
         bind<VKWallRepository>() with singleton { VKWallRepositoryImpl(instance(), instance()) }
+        bind<HolofoxRepository>() with singleton { HolofoxRepositoryImpl(instance()) }
 
         // Provider
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind<ConnectivityProvider>() with singleton { ConnectivityProviderImpl(instance()) }
-        bind() from provider { MainViewProvider(instance(), instance()) }
+
+        bind() from provider { MainViewProvider(instance(), instance(), instance()) }
         bind() from provider { PostponedListViewModelProvider(instance(), instance()) }
         bind() from provider { TimeLineListViewModelProvider(instance(), instance(), instance()) }
     }

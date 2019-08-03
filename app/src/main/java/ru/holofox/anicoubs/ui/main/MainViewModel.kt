@@ -1,14 +1,21 @@
 package ru.holofox.anicoubs.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
+import kotlinx.coroutines.launch
+import java.util.*
+
+import ru.holofox.anicoubs.data.network.NetworkException
+import ru.holofox.anicoubs.data.network.await
+import ru.holofox.anicoubs.data.repository.CoubRepository
 import ru.holofox.anicoubs.data.repository.VKWallRepository
 import ru.holofox.anicoubs.internal.observer.SingleEvent
 import ru.holofox.anicoubs.ui.base.ScopedViewModel
-import java.util.*
 
 class MainViewModel(
+    private val coubRepository: CoubRepository,
     private val vkWallRepository: VKWallRepository,
     private val savedStateHandle: SavedStateHandle
 ) : ScopedViewModel() {
@@ -51,6 +58,21 @@ class MainViewModel(
     private fun onResetSavedState() {
         savedStateHandle.set(COUB_LINK, "")
         savedStateHandle.set(CATEGORY_ID, 0)
+    }
+
+    private fun onGetCoub() = launch {
+        try {
+            val result = coubRepository.getCoub("1yjndp").await()
+
+
+            // result.title.capitalize() // Capitalize the first letter
+            // calendar.timeInMillis / 1000L // VK time
+
+            // for (index in result.tags) { }
+
+        } catch (error: NetworkException) {
+            Log.e("onGetCoub", error.toString())
+        }
     }
 
     companion object STATE {

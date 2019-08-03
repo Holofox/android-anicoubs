@@ -4,10 +4,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import ru.holofox.anicoubs.data.provider.UnitProvider
-import ru.holofox.anicoubs.data.repository.AnicoubsRepository
+import ru.holofox.anicoubs.data.repository.CoubRepository
 
 class TimeLineListViewModelProvider(
-    private val acRepository: AnicoubsRepository,
+    private val acRepository: CoubRepository,
     private val unitProvider: UnitProvider,
     private val savedStateHandle : SavedStateHandle
 ) : ViewModelProvider.NewInstanceFactory() {

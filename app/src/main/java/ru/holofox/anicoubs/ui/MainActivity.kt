@@ -164,8 +164,8 @@ class MainActivity : AppCompatActivity(), KodeinAware {
                 requireFutureDateTime = true,
                 currentDateTime = viewModel.publishDate.value,
                 show24HoursView = true
-            ) { _, dateTime ->
-                viewModel.onPublishDate(dateTime)
+            ) { _, calendar ->
+                viewModel.onPublishDate(calendar)
             }
             negativeButton(R.string.dialog_button_cancel)
             positiveButton(R.string.dialog_button_ok)

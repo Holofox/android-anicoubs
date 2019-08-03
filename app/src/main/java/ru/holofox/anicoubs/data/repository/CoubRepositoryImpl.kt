@@ -7,16 +7,18 @@ import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZonedDateTime
 
 import ru.holofox.anicoubs.data.db.TimeLineDao
+import ru.holofox.anicoubs.data.db.entity.coub.CoubEntry
 import ru.holofox.anicoubs.data.db.unitlocalized.coub.asDomainModel
+import ru.holofox.anicoubs.data.network.NetworkCall
 import ru.holofox.anicoubs.data.network.NetworkException
 import ru.holofox.anicoubs.data.network.await
 import ru.holofox.anicoubs.data.network.data.TimeLineNetworkDataSource
-import ru.holofox.anicoubs.data.network.response.TimeLineResponse
+import ru.holofox.anicoubs.data.network.response.coub.CoubTimelineResponse
 
-class AnicoubsRepositoryImpl(
+class CoubRepositoryImpl(
     private val timelineDao: TimeLineDao,
     private val timelineNetworkDataSource: TimeLineNetworkDataSource
-) : AnicoubsRepository {
+) : CoubRepository {
 
     override val timeline = Transformations.map(timelineDao.getTimeline()) {
         it.asDomainModel()
@@ -28,7 +30,20 @@ class AnicoubsRepositoryImpl(
         }
     }
 
-    private fun persistFetchedTimeLine(fetchedTimeLine: TimeLineResponse) {
+    override suspend fun getCoub(permalink: String) = withContext(Dispatchers.IO) {
+        val response = NetworkCall<CoubEntry>()
+
+        try {
+            val result = timelineNetworkDataSource.fetchCoub(permalink).await()
+            response.onSuccess(result)
+        } catch (error: NetworkException) {
+            response.onError(error)
+        }
+
+        return@withContext response
+    }
+
+    private fun persistFetchedTimeLine(fetchedCoubTimeline: CoubTimelineResponse) {
 
         fun deleteOldTimelineData() {
             val today = LocalDateTime.now()
@@ -37,7 +52,7 @@ class AnicoubsRepositoryImpl(
 
         GlobalScope.launch(Dispatchers.IO) {
             deleteOldTimelineData()
-            timelineDao.insert(fetchedTimeLine.coubs)
+            timelineDao.insert(fetchedCoubTimeline.coubs)
         }
     }
 
