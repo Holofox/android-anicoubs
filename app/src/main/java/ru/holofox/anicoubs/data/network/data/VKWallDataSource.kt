@@ -2,8 +2,8 @@ package ru.holofox.anicoubs.data.network.data
 
 import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
 import ru.holofox.anicoubs.data.network.NetworkCall
-import ru.holofox.anicoubs.data.network.response.VKWallGetResponse
-import ru.holofox.anicoubs.data.network.response.VKWallPostResponse
+import ru.holofox.anicoubs.data.network.response.vk.VKWallGetResponse
+import ru.holofox.anicoubs.data.network.response.vk.VKWallPostResponse
 
 interface VKWallDataSource {
     suspend fun wallGet(parameters: VKParameters) : NetworkCall<VKWallGetResponse>

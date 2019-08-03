@@ -1,4 +1,4 @@
-package ru.holofox.anicoubs.data.network.response
+package ru.holofox.anicoubs.data.network.response.vk
 
 import com.google.gson.annotations.SerializedName
 import org.threeten.bp.LocalDate

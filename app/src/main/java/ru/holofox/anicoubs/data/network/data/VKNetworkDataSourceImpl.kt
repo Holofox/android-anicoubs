@@ -9,8 +9,8 @@ import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
 import ru.holofox.anicoubs.data.network.NetworkCall
 import ru.holofox.anicoubs.data.network.NetworkException
 import ru.holofox.anicoubs.data.network.api.VKApiService
-import ru.holofox.anicoubs.data.network.response.VKWallGetResponse
-import ru.holofox.anicoubs.data.network.response.VKWallPostResponse
+import ru.holofox.anicoubs.data.network.response.vk.VKWallGetResponse
+import ru.holofox.anicoubs.data.network.response.vk.VKWallPostResponse
 import ru.holofox.anicoubs.data.provider.ConnectivityProvider
 
 class VKNetworkDataSourceImpl(

@@ -1,9 +1,9 @@
 package ru.holofox.anicoubs.data.network.api
 
-import ru.holofox.anicoubs.data.network.response.VKWallGetResponse
+import ru.holofox.anicoubs.data.network.response.vk.VKWallGetResponse
 import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
-import ru.holofox.anicoubs.data.network.response.VKVideoSaveResponse
-import ru.holofox.anicoubs.data.network.response.VKWallPostResponse
+import ru.holofox.anicoubs.data.network.response.vk.VKVideoSaveResponse
+import ru.holofox.anicoubs.data.network.response.vk.VKWallPostResponse
 
 class VKApiService {
 

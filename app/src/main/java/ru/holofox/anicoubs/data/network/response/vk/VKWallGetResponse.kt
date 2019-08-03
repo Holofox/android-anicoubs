@@ -1,4 +1,4 @@
-package ru.holofox.anicoubs.data.network.response
+package ru.holofox.anicoubs.data.network.response.vk
 
 import ru.holofox.anicoubs.data.db.entity.vk.GroupEntry
 import ru.holofox.anicoubs.data.db.entity.vk.WallItemEntry
