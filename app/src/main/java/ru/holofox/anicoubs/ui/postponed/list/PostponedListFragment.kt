@@ -91,7 +91,6 @@ class PostponedListFragment : Fragment(), KodeinAware {
         viewModel.wall.observe(viewLifecycleOwner, Observer { entries ->
             entries?.let {
                 viewModelAdapter?.submitList(entries)
-                Log.i("observeResponseWall", entries.count().toString())
             }
         })
     }
