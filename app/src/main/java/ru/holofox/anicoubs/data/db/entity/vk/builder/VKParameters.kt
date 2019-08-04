@@ -19,6 +19,8 @@ class VKParameters(b: Builder) {
 
         fun ownerId(ownerId: Int) = apply { this.args["owner_id"] = ownerId.toString() }
         fun postId(postId: Int) = apply { this.args["post_id"] = postId.toString() }
+        fun videoId(videoId: Int) = apply { this.args["video_id"] = videoId.toString() }
+        fun targetId(targetId: Int) = apply { this.args["target_id"] = targetId.toString() }
         fun domain(domain: String) = apply { this.args["domain"] = domain }
         fun offset(offset: Int) = apply { this.args["offset"] = offset.toString() }
         fun count(count: Int) = apply { this.args["count"] = count.toString() }

@@ -46,13 +46,14 @@ class AnicoubsApplication: Application(), KodeinAware {
         // bind() from singleton { HolofoxApiService(instance()) }
 
         // Data source
-        bind<TimeLineNetworkDataSource>() with singleton { TimeLineNetworkDataSourceImpl(instance()) }
-        bind<VKWallDataSource>() with singleton { VKNetworkDataSourceImpl(instance()) }
+        bind<CoubNetworkDataSource>() with singleton { CoubNetworkDataSourceImpl(instance()) }
+        bind<VKNetworkDataSource>() with singleton { VKNetworkDataSourceImpl(instance()) }
         bind<HolofoxNetworkDataSource>() with singleton { HolofoxNetworkDataSourceImpl(instance()) }
 
         // Repository
         bind<CoubRepository>() with singleton { CoubRepositoryImpl(instance(), instance()) }
         bind<VKWallRepository>() with singleton { VKWallRepositoryImpl(instance(), instance()) }
+        bind<VKVideoRepository>() with singleton { VKVideoRepositoryImpl(instance()) }
         bind<HolofoxRepository>() with singleton { HolofoxRepositoryImpl(instance()) }
 
         // Provider
@@ -60,7 +61,7 @@ class AnicoubsApplication: Application(), KodeinAware {
         bind<ConnectivityProvider>() with singleton { ConnectivityProviderImpl(instance()) }
 
         bind() from provider { MainViewProvider(instance(), instance(), instance()) }
-        bind() from provider { PostponedListViewModelProvider(instance(), instance()) }
+        bind() from provider { PostponedListViewModelProvider(instance(), instance(), instance()) }
         bind() from provider { TimeLineListViewModelProvider(instance(), instance(), instance()) }
     }
 
