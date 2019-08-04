@@ -9,9 +9,9 @@ import ru.holofox.anicoubs.data.network.api.CoubApiService
 import ru.holofox.anicoubs.data.network.response.coub.CoubTimelineResponse
 import ru.holofox.anicoubs.internal.NoConnectivityException
 
-class TimeLineNetworkDataSourceImpl(
+class CoubNetworkDataSourceImpl(
     private val coubApiService: CoubApiService
-) : TimeLineNetworkDataSource {
+) : CoubNetworkDataSource {
 
     override suspend fun fetchFeed(page: Int, per_page: Int) : NetworkCall<CoubTimelineResponse> {
         val response = NetworkCall<CoubTimelineResponse>()

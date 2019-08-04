@@ -12,12 +12,13 @@ import ru.holofox.anicoubs.data.db.unitlocalized.coub.asDomainModel
 import ru.holofox.anicoubs.data.network.NetworkCall
 import ru.holofox.anicoubs.data.network.NetworkException
 import ru.holofox.anicoubs.data.network.await
-import ru.holofox.anicoubs.data.network.data.TimeLineNetworkDataSource
+import ru.holofox.anicoubs.data.network.data.CoubNetworkDataSource
 import ru.holofox.anicoubs.data.network.response.coub.CoubTimelineResponse
+import ru.holofox.anicoubs.internal.CoubRepositoryError
 
 class CoubRepositoryImpl(
     private val timelineDao: TimeLineDao,
-    private val timelineNetworkDataSource: TimeLineNetworkDataSource
+    private val timelineNetworkDataSource: CoubNetworkDataSource
 ) : CoubRepository {
 
     override val timeline = Transformations.map(timelineDao.getTimeline()) {
@@ -66,7 +67,7 @@ class CoubRepositoryImpl(
             val result = timelineNetworkDataSource.fetchFeed(0, 10).await()
             persistFetchedTimeLine(result)
         } catch (error: NetworkException) {
-            throw AnicoubsRefreshError(error)
+            throw CoubRepositoryError(error)
         }
     }
 
@@ -76,5 +77,3 @@ class CoubRepositoryImpl(
     }
 
 }
-
-class AnicoubsRefreshError(cause: Throwable) : Throwable(cause.message, cause)

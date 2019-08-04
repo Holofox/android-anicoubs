@@ -1,20 +1,26 @@
 package ru.holofox.anicoubs.ui.postponed.list
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
+import kotlinx.coroutines.async
 
 import kotlinx.coroutines.launch
+import ru.holofox.anicoubs.data.db.entity.vk.wall.Video
 import ru.holofox.anicoubs.data.db.unitlocalized.vk.UnitSpecificVKWallMinimalEntry
-import ru.holofox.anicoubs.data.repository.VKWallRefreshError
+import ru.holofox.anicoubs.data.repository.VKVideoRepository
 
 import ru.holofox.anicoubs.data.repository.VKWallRepository
 import ru.holofox.anicoubs.internal.Constants.NETWORK_ERROR_SHOWN
+import ru.holofox.anicoubs.internal.VKVideoRepositoryError
+import ru.holofox.anicoubs.internal.VKWallRepositoryError
 import ru.holofox.anicoubs.internal.observer.SingleEvent
 import ru.holofox.anicoubs.ui.base.ScopedViewModel
 
 class PostponedListViewModel(
     private val vkWallRepository: VKWallRepository,
+    private val vkVideoRepository: VKVideoRepository,
     private val savedStateHandle: SavedStateHandle
 ) : ScopedViewModel() {
 
@@ -46,7 +52,7 @@ class PostponedListViewModel(
             _isLoading.value = true
             _eventNetworkError.value = false
             savedStateHandle.set(NETWORK_ERROR_SHOWN, false)
-        } catch (error: VKWallRefreshError) {
+        } catch (error: VKWallRepositoryError) {
             _eventNetworkError.value = true
         }
         finally {
@@ -57,17 +63,28 @@ class PostponedListViewModel(
     fun onItemPublish(item: UnitSpecificVKWallMinimalEntry) = launch {
         try {
             vkWallRepository.wallPost(item)
-        } catch (error: VKWallRefreshError) {
+        } catch (error: VKWallRepositoryError) {
             onSnackBarShow(error.message)
         }
     }
 
     fun onItemDelete(item: UnitSpecificVKWallMinimalEntry) = launch {
+
+        fun onVideoDelete(video: Video) = launch {
+            try {
+                vkVideoRepository.videoDelete(video)
+            } catch (error: VKVideoRepositoryError) {
+                onSnackBarShow(error.message)
+            }
+        }
+
         try {
             vkWallRepository.wallDelete(item)
-        } catch (error: VKWallRefreshError) {
+            item.attachments?.get(0)?.video?.let { onVideoDelete(it) }
+        } catch (error: VKWallRepositoryError) {
             onSnackBarShow(error.message)
         }
+
     }
 
     private fun onSnackBarShow(message: String?) {

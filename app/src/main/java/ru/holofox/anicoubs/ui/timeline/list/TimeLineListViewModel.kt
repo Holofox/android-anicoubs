@@ -1,13 +1,14 @@
 package ru.holofox.anicoubs.ui.timeline.list
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import kotlinx.coroutines.launch
 import ru.holofox.anicoubs.data.provider.UnitProvider
-import ru.holofox.anicoubs.data.repository.AnicoubsRefreshError
 import ru.holofox.anicoubs.data.repository.CoubRepository
 import ru.holofox.anicoubs.internal.Constants.NETWORK_ERROR_SHOWN
+import ru.holofox.anicoubs.internal.CoubRepositoryError
 import ru.holofox.anicoubs.ui.base.ScopedViewModel
 
 class TimeLineListViewModel(
@@ -47,7 +48,7 @@ class TimeLineListViewModel(
             _eventNetworkError.value = false
             savedStateHandle.set(NETWORK_ERROR_SHOWN, false)
         }
-        catch (error: AnicoubsRefreshError) {
+        catch (error: CoubRepositoryError) {
             _eventNetworkError.value = true
         }
         finally {
