@@ -1,6 +1,5 @@
-package ru.holofox.anicoubs.data.repository
+package ru.holofox.anicoubs.data.repository.vk
 
-import android.util.Log
 import androidx.lifecycle.Transformations
 
 import kotlinx.coroutines.Dispatchers
@@ -12,6 +11,7 @@ import ru.holofox.anicoubs.data.db.unitlocalized.vk.UnitSpecificVKWallMinimalEnt
 import ru.holofox.anicoubs.data.db.unitlocalized.vk.asDomainModel
 
 import ru.holofox.anicoubs.data.network.*
+import ru.holofox.anicoubs.data.network.api.vk.VKApiWallService
 import ru.holofox.anicoubs.data.network.data.VKNetworkDataSource
 
 import ru.holofox.anicoubs.internal.Constants
@@ -36,7 +36,7 @@ class VKWallRepositoryImpl(
 
         withContext(Dispatchers.IO) {
             try {
-                val result = vkNetworkDataSource.wallGet(parameters).await()
+                val result = vkNetworkDataSource.perform(VKApiWallService.Get(parameters)).await()
                 vkWallDao.update(result.items, result.groups)
             } catch (error: NetworkException) {
                 throw VKWallRepositoryError(error)
@@ -44,32 +44,24 @@ class VKWallRepositoryImpl(
         }
     }
 
-    override suspend fun wallPost(item: UnitSpecificVKWallMinimalEntry) {
-        val parameters = VKParameters.Builder()
-            .ownerId(item.ownerId)
-            .postId(item.postId)
-            .build()
-
+    override suspend fun wallPost(parameters: VKParameters) {
         withContext(Dispatchers.IO) {
             try {
-                vkNetworkDataSource.wallPost(parameters).await()
-                vkWallDao.delete(item.postId)
+                vkNetworkDataSource.perform(VKApiWallService.Post(parameters)).await()
             } catch (error: NetworkException) {
                 throw VKWallRepositoryError(error)
             }
         }
     }
 
-    override suspend fun wallDelete(item: UnitSpecificVKWallMinimalEntry) {
-        val parameters = VKParameters.Builder()
-            .ownerId(item.ownerId)
-            .postId(item.postId)
-            .build()
+    override suspend fun wallDaoDelete(postId: Int) {
+        vkWallDao.delete(postId)
+    }
 
+    override suspend fun wallDelete(parameters: VKParameters) {
         withContext(Dispatchers.IO) {
             try {
-                vkNetworkDataSource.wallDelete(parameters).await()
-                vkWallDao.delete(item.postId)
+                vkNetworkDataSource.perform(VKApiWallService.Delete(parameters)).await()
             } catch (error: NetworkException) {
                 throw VKWallRepositoryError(error)
             }

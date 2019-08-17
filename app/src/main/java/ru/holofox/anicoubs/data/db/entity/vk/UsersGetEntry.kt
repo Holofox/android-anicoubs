@@ -1,23 +1,22 @@
-package ru.holofox.anicoubs.data.network.response.vk
+package ru.holofox.anicoubs.data.db.entity.vk
 
 import com.google.gson.annotations.SerializedName
-import org.threeten.bp.LocalDate
 
-@ExperimentalUnsignedTypes
-data class VKProfileInfoResponse constructor(
+data class UsersGetEntry(
+    val id: Long,
     @SerializedName("first_name")
     val firstName: String,
     @SerializedName("last_name")
     val lastName: String,
-    val bdate: LocalDate?,
+    val bdate: Long,
     @SerializedName("bdate_visibility")
-    val bdateVisibility: UByte,
+    val bdateVisibility: Byte,
     @SerializedName("home_town")
     val homeTown: String?,
     val phone: String?,
-    val relation: UByte,
+    val relation: Byte,
     @SerializedName("screen_name")
     val screenName: String,
-    val sex: UByte,
+    val sex: Byte,
     val status: String?
 )

@@ -5,7 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class VKVideoSaveResponse(
     @SerializedName("upload_url")
     val uploadUrl: String,
-    val vid: Int,
+    @SerializedName("video_id")
+    val videoId: Int,
     @SerializedName("owner_id")
     val ownerId: Int,
     val name: String,

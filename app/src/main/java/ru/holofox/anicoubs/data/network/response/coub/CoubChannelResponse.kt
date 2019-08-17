@@ -9,18 +9,18 @@ import ru.holofox.anicoubs.data.db.entity.coub.timeline.Versions
 
 data class CoubChannelResponse(
     @SerializedName("simple_coubs_count")
-    val simpleCoubsCount: Boolean,
-    val id: Long,
+    val simpleCoubsCount: Int,
+    val id: Int,
     @SerializedName("user_id")
-    val userId: Long,
+    val userId: Int,
     val permalink: String,
     val title: String,
     val description: String,
     val contacts: Contacts,
     @SerializedName("created_at")
-    val createdAt: LocalDateTime,
+    val createdAt: String,
     @SerializedName("updated_at")
-    val updatedAt: LocalDateTime,
+    val updatedAt: String,
     @SerializedName("avatar_versions")
     val avatarVersions: Versions,
     @SerializedName("followers_count")

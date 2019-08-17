@@ -16,9 +16,13 @@ class VKParameters(b: Builder) {
         fun privacyView(privacyView: String) = apply { this.args["privacy_view"] = privacyView }
         fun privacyComment(privacyComment: String) = apply { this.args["privacy_comment"] = privacyComment }
         fun noComments(noComments: Boolean) = apply { this.args["no_comments"] = if (noComments) "1" else "0" }
-
         fun ownerId(ownerId: Int) = apply { this.args["owner_id"] = ownerId.toString() }
         fun postId(postId: Int) = apply { this.args["post_id"] = postId.toString() }
+        fun fromGroup(fromGroup: Boolean) = apply { this.args["from_group"] = if (fromGroup) "1" else "0"  }
+        fun message(message: String) = apply { this.args["message"] = message }
+        fun attachments(attachments: String) = apply { this.args["attachments"] = attachments }
+        fun publishDate(date: Long) = apply { this.args["publish_date"] = date.toString() }
+        fun muteNotification(mute: Boolean) = apply { this.args["mute_notifications"] = if (mute) "1" else "0"  }
         fun videoId(videoId: Int) = apply { this.args["video_id"] = videoId.toString() }
         fun targetId(targetId: Int) = apply { this.args["target_id"] = targetId.toString() }
         fun domain(domain: String) = apply { this.args["domain"] = domain }
@@ -27,6 +31,8 @@ class VKParameters(b: Builder) {
         fun filter(filter: String) = apply { this.args["filter"] = filter }
         fun extended(extended: Boolean) = apply { this.args["extended"] = if (extended) "1" else "0"  }
         fun fields(fields: String) = apply { this.args["fields"] = fields}
+        fun userIds(userIds: String) = apply { this.args["user_ids"] = userIds}
+
         fun build() = VKParameters(this)
     }
 

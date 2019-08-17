@@ -13,6 +13,7 @@ import ru.holofox.anicoubs.data.network.NetworkCall
 import ru.holofox.anicoubs.data.network.NetworkException
 import ru.holofox.anicoubs.data.network.await
 import ru.holofox.anicoubs.data.network.data.CoubNetworkDataSource
+import ru.holofox.anicoubs.data.network.response.coub.CoubChannelResponse
 import ru.holofox.anicoubs.data.network.response.coub.CoubTimelineResponse
 import ru.holofox.anicoubs.internal.CoubRepositoryError
 
@@ -36,6 +37,19 @@ class CoubRepositoryImpl(
 
         try {
             val result = timelineNetworkDataSource.fetchCoub(permalink).await()
+            response.onSuccess(result)
+        } catch (error: NetworkException) {
+            response.onError(error)
+        }
+
+        return@withContext response
+    }
+
+    override suspend fun getChannel(id: Int) = withContext(Dispatchers.IO) {
+        val response = NetworkCall<CoubChannelResponse>()
+
+        try {
+            val result = timelineNetworkDataSource.fetchChannel(id).await()
             response.onSuccess(result)
         } catch (error: NetworkException) {
             response.onError(error)

@@ -19,12 +19,15 @@ import org.kodein.di.generic.singleton
 import ru.holofox.anicoubs.data.db.*
 import ru.holofox.anicoubs.data.network.*
 import ru.holofox.anicoubs.data.network.api.CoubApiService
+import ru.holofox.anicoubs.data.network.api.HolofoxApiService
+import ru.holofox.anicoubs.data.network.api.VKApiService
 import ru.holofox.anicoubs.data.network.data.*
 import ru.holofox.anicoubs.data.provider.ConnectivityProvider
 import ru.holofox.anicoubs.data.provider.ConnectivityProviderImpl
 import ru.holofox.anicoubs.data.provider.UnitProvider
 import ru.holofox.anicoubs.data.provider.UnitProviderImpl
 import ru.holofox.anicoubs.data.repository.*
+import ru.holofox.anicoubs.data.repository.vk.*
 import ru.holofox.anicoubs.ui.LoginActivity
 import ru.holofox.anicoubs.ui.main.MainViewProvider
 import ru.holofox.anicoubs.ui.postponed.list.PostponedListViewModelProvider
@@ -43,7 +46,8 @@ class AnicoubsApplication: Application(), KodeinAware {
 
         // Api
         bind() from singleton { CoubApiService(instance()) }
-        // bind() from singleton { HolofoxApiService(instance()) }
+        bind() from singleton { VKApiService(instance()) }
+        bind() from singleton { HolofoxApiService(instance()) }
 
         // Data source
         bind<CoubNetworkDataSource>() with singleton { CoubNetworkDataSourceImpl(instance()) }
@@ -52,15 +56,17 @@ class AnicoubsApplication: Application(), KodeinAware {
 
         // Repository
         bind<CoubRepository>() with singleton { CoubRepositoryImpl(instance(), instance()) }
-        bind<VKWallRepository>() with singleton { VKWallRepositoryImpl(instance(), instance()) }
-        bind<VKVideoRepository>() with singleton { VKVideoRepositoryImpl(instance()) }
         bind<HolofoxRepository>() with singleton { HolofoxRepositoryImpl(instance()) }
+        bind<VKWallRepository>() with singleton { VKWallRepositoryImpl(instance(), instance()) }
+        bind<VKVideoRepository>() with singleton { VKVideoRepositoryImpl(instance(), instance()) }
+        bind<VKUsersRepository>() with singleton { VKUsersRepositoryImpl(instance()) }
 
         // Provider
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind<ConnectivityProvider>() with singleton { ConnectivityProviderImpl(instance()) }
 
-        bind() from provider { MainViewProvider(instance(), instance(), instance()) }
+        bind() from provider { MainViewProvider(instance(), instance(), instance(), instance(),
+            instance(), instance(), instance()) }
         bind() from provider { PostponedListViewModelProvider(instance(), instance(), instance()) }
         bind() from provider { TimeLineListViewModelProvider(instance(), instance(), instance()) }
     }

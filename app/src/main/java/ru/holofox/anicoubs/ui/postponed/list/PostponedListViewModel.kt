@@ -1,17 +1,16 @@
 package ru.holofox.anicoubs.ui.postponed.list
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
-import kotlinx.coroutines.async
 
 import kotlinx.coroutines.launch
+import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
 import ru.holofox.anicoubs.data.db.entity.vk.wall.Video
 import ru.holofox.anicoubs.data.db.unitlocalized.vk.UnitSpecificVKWallMinimalEntry
-import ru.holofox.anicoubs.data.repository.VKVideoRepository
+import ru.holofox.anicoubs.data.repository.vk.VKVideoRepository
 
-import ru.holofox.anicoubs.data.repository.VKWallRepository
+import ru.holofox.anicoubs.data.repository.vk.VKWallRepository
 import ru.holofox.anicoubs.internal.Constants.NETWORK_ERROR_SHOWN
 import ru.holofox.anicoubs.internal.VKVideoRepositoryError
 import ru.holofox.anicoubs.internal.VKWallRepositoryError
@@ -62,7 +61,13 @@ class PostponedListViewModel(
 
     fun onItemPublish(item: UnitSpecificVKWallMinimalEntry) = launch {
         try {
-            vkWallRepository.wallPost(item)
+            val parameters = VKParameters.Builder()
+                .ownerId(item.ownerId)
+                .postId(item.postId)
+                .build()
+
+            vkWallRepository.wallPost(parameters)
+            vkWallRepository.wallDaoDelete(item.postId)
         } catch (error: VKWallRepositoryError) {
             onSnackBarShow(error.message)
         }
@@ -72,14 +77,24 @@ class PostponedListViewModel(
 
         fun onVideoDelete(video: Video) = launch {
             try {
-                vkVideoRepository.videoDelete(video)
+                val parameters = VKParameters.Builder()
+                    .videoId(video.id)
+                    .ownerId(video.ownerId)
+                    .build()
+
+                vkVideoRepository.videoDelete(parameters)
             } catch (error: VKVideoRepositoryError) {
                 onSnackBarShow(error.message)
             }
         }
 
         try {
-            vkWallRepository.wallDelete(item)
+            val parameters = VKParameters.Builder()
+                .ownerId(item.ownerId)
+                .postId(item.postId)
+                .build()
+
+            vkWallRepository.wallDelete(parameters)
             item.attachments?.get(0)?.video?.let { onVideoDelete(it) }
         } catch (error: VKWallRepositoryError) {
             onSnackBarShow(error.message)
