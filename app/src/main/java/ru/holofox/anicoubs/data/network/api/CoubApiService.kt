@@ -35,7 +35,7 @@ interface CoubApiService {
 
     @GET(value = "channels/{id}")
     fun getChannelAsync(
-        @Path("id") id: String
+        @Path("id") id: Int
     ): Deferred<CoubChannelResponse>
 
     companion object {
