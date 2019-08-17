@@ -24,7 +24,7 @@ interface HolofoxApiService {
     companion object {
         operator fun invoke(
             connectivityInterceptor: ConnectivityInterceptor
-        ): CoubApiService {
+        ): HolofoxApiService {
             val requestInterceptor = Interceptor { chain ->
 
                 val request = chain.request()
@@ -45,7 +45,7 @@ interface HolofoxApiService {
                 .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(CoubApiService::class.java)
+                .create(HolofoxApiService::class.java)
         }
     }
 }
