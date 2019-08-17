@@ -66,4 +66,3 @@ data class CoubEntry(
     @SerializedName("position_on_page")
     val positionOnPage: Int
 )
-
