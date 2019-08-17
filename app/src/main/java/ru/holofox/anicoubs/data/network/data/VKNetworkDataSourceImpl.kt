@@ -5,44 +5,15 @@ import com.vk.api.sdk.VKApiCallback
 import com.vk.api.sdk.exceptions.VKApiExecutionException
 import com.vk.api.sdk.internal.ApiCommand
 
-import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
 import ru.holofox.anicoubs.data.network.NetworkCall
 import ru.holofox.anicoubs.data.network.NetworkException
-import ru.holofox.anicoubs.data.network.api.vk.VKApiService
-import ru.holofox.anicoubs.data.network.response.vk.VKVideoSaveResponse
-import ru.holofox.anicoubs.data.network.response.vk.VKWallGetResponse
-import ru.holofox.anicoubs.data.network.response.vk.VKWallPostResponse
 import ru.holofox.anicoubs.data.provider.ConnectivityProvider
 
 class VKNetworkDataSourceImpl(
     private val connectivityProvider: ConnectivityProvider
 ): VKNetworkDataSource {
 
-    override suspend fun wallGet(parameters: VKParameters) : NetworkCall<VKWallGetResponse> {
-        return perform(VKApiService.WallGet(parameters))
-    }
-
-    override suspend fun wallPost(parameters: VKParameters) : NetworkCall<VKWallPostResponse> {
-        return perform(VKApiService.WallPost(parameters))
-    }
-
-    override suspend fun wallDelete(parameters: VKParameters) : NetworkCall<Boolean> {
-        return perform(VKApiService.WallDelete(parameters))
-    }
-
-    override suspend fun videoSave(parameters: VKParameters): NetworkCall<VKVideoSaveResponse> {
-        return perform(VKApiService.VideoSave(parameters))
-    }
-
-    override suspend fun videoDelete(parameters: VKParameters): NetworkCall<Boolean> {
-        return perform(VKApiService.VideoDelete(parameters))
-    }
-
-    override suspend fun utilsGetServerTime(): NetworkCall<Long> {
-        return perform(VKApiService.UtilsGetServerTime())
-    }
-
-    private fun <T>perform(apiCommand: ApiCommand<T>) : NetworkCall<T> {
+    override suspend fun <T>perform(apiCommand: ApiCommand<T>) : NetworkCall<T> {
         val response = NetworkCall<T>()
 
         if (!connectivityProvider.isOnline())

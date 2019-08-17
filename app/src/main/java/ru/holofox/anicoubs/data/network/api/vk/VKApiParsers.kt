@@ -3,6 +3,7 @@ package ru.holofox.anicoubs.data.network.api.vk
 import com.google.gson.GsonBuilder
 import com.vk.api.sdk.VKApiResponseParser
 import com.vk.api.sdk.exceptions.VKApiIllegalResponseException
+
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -10,6 +11,19 @@ class ResponseApiParser<T: Any>(val type: Class<T>?): VKApiResponseParser<T> {
     override fun parse(response: String): T {
         try {
             val joResponse = JSONObject(response).getJSONObject("response").toString()
+            val gson = GsonBuilder().setPrettyPrinting().create()
+
+            return gson.fromJson(joResponse, type)
+        } catch (ex: JSONException) {
+            throw VKApiIllegalResponseException(ex)
+        }
+    }
+}
+
+class ResponseApiArrayParser<T: Any>(val type: Class<T>?): VKApiResponseParser<T> {
+    override fun parse(response: String): T {
+        try {
+            val joResponse = JSONObject(response).toString()
             val gson = GsonBuilder().setPrettyPrinting().create()
 
             return gson.fromJson(joResponse, type)
