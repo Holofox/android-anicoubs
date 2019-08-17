@@ -45,7 +45,7 @@ class CoubNetworkDataSourceImpl(
         return response
     }
 
-    override suspend fun fetchChannel(id: String): NetworkCall<CoubChannelResponse> {
+    override suspend fun fetchChannel(id: Int): NetworkCall<CoubChannelResponse> {
         val response = NetworkCall<CoubChannelResponse>()
 
         try {

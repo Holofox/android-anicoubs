@@ -8,5 +8,5 @@ import ru.holofox.anicoubs.data.network.response.coub.CoubTimelineResponse
 interface CoubNetworkDataSource {
     suspend fun fetchFeed(page: Int, per_page: Int) : NetworkCall<CoubTimelineResponse>
     suspend fun fetchCoub(permalink: String) : NetworkCall<CoubEntry>
-    suspend fun fetchChannel(id: String) : NetworkCall<CoubChannelResponse>
+    suspend fun fetchChannel(id: Int) : NetworkCall<CoubChannelResponse>
 }
