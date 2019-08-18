@@ -1,6 +1,6 @@
 package ru.holofox.anicoubs.ui.suggest.list
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -23,7 +23,7 @@ class SuggestListFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SuggestListViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SuggestListViewModel::class.java)
 
         updateActionBarTitle(getString(R.string.menu_suggests))
     }

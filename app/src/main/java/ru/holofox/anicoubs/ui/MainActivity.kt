@@ -3,14 +3,13 @@ package ru.holofox.anicoubs.ui
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.text.isDigitsOnly
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.ui.setupActionBarWithNavController
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -50,7 +49,7 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
     private lateinit var binding: ActivityMainBinding
 
     private val viewModel: MainViewModel by lazy {
-        ViewModelProviders.of(this, viewModelProvider)
+        ViewModelProvider(this, viewModelProvider)
             .get(MainViewModel::class.java)
     }
 

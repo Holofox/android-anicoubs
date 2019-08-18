@@ -1,6 +1,6 @@
 package ru.holofox.anicoubs.ui.postponed.detail
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -26,7 +26,7 @@ class PostponedDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(PostponedDetailViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(PostponedDetailViewModel::class.java)
         // TODO: Use the ViewModel
     }
 

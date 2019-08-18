@@ -1,6 +1,6 @@
 package ru.holofox.anicoubs.ui.timeline.list
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -26,7 +26,7 @@ class TimeLineListFragment : Fragment(), KodeinAware {
     private lateinit var binding: TimelineListFragmentBinding
 
     private val viewModel: TimeLineListViewModel by lazy {
-        ViewModelProviders.of(this, viewModelProvider)
+        ViewModelProvider(this, viewModelProvider)
             .get(TimeLineListViewModel::class.java)
     }
 

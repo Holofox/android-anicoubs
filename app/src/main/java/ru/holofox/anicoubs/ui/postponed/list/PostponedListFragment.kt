@@ -2,7 +2,7 @@ package ru.holofox.anicoubs.ui.postponed.list
 
 import android.content.Intent
 import android.net.Uri
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +36,7 @@ class PostponedListFragment : Fragment(), KodeinAware {
     private lateinit var binding: PostponedListFragmentBinding
 
     private val viewModel: PostponedListViewModel by lazy {
-        ViewModelProviders.of(this, viewModelProvider)
+        ViewModelProvider(this, viewModelProvider)
             .get(PostponedListViewModel::class.java)
     }
     private val viewModelProvider: PostponedListViewModelProvider by instance()

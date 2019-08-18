@@ -1,6 +1,5 @@
 package ru.holofox.anicoubs.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -8,7 +7,6 @@ import kotlinx.coroutines.launch
 import ru.holofox.anicoubs.R
 import ru.holofox.anicoubs.data.db.entity.coub.CoubEntry
 import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
-import ru.holofox.anicoubs.data.db.entity.vk.wall.Video
 import java.util.*
 
 import ru.holofox.anicoubs.data.network.NetworkException
