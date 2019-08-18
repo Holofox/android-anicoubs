@@ -3,7 +3,6 @@ package ru.holofox.anicoubs.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 
 import com.afollestad.materialdialogs.MaterialDialog
@@ -15,8 +14,9 @@ import com.vk.api.sdk.auth.VKScope
 
 import ru.holofox.anicoubs.R
 import ru.holofox.anicoubs.databinding.ActivityLoginBinding
+import ru.holofox.anicoubs.ui.base.LocaleAppCombatActivity
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : LocaleAppCombatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 

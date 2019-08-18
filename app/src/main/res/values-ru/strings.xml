@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Welcome -->
+    <string name="welcome_slogan">Только свежевыжатое</string>
+    <string name="welcome_log_in">Войти</string>
+    <string name="welcome_sign_up">У вас ещё нет аккаунта?</string>
+
+    <string name="vk_unknown_error">Произошла неизвестная ошибка</string>
+    <string name="vk_try_again">Попробуйте позже.</string>
+
+    <!-- Navigation -->
+    <string name="menu_timeline">Свежее</string>
+    <string name="menu_postponed">Отложенные записи</string>
+    <string name="menu_suggests">Предложенные записи</string>
+    <string name="menu_settings">Настройки</string>
+
+    <!-- Timeline -->
+    <string name="timeline_loading">Загрузка</string>
+
+    <!-- Postponed -->
+    <string name="option_item_publish">Опубликовать сейчас</string>
+    <string name="option_item_show_post">Показать пост</string>
+    <string name="option_item_delete">Удалить</string>
+
+    <plurals name="quantity_views">
+        <item quantity="one">%1$d просмотр</item>
+        <item quantity="few">%1$d просмотра</item>
+        <item quantity="many">%1$d просмотров</item>
+        <item quantity="other">%1$d просмотров</item>
+    </plurals>
+
+    <!-- General settings -->
+    <string name="pref_header_general">Основные</string>
+    <string name="pref_header_notifications">Уведомления</string>
+    <string name="pref_header_about">О приложении</string>
+    <string name="pref_header_account">Аккаунт</string>
+
+    <string name="pref_title_your_name">Ваше имя</string>
+    <string name="pref_title_select_theme">Выберите тему</string>
+    <string name="pref_title_theme">Тема</string>
+    <string name="pref_title_select_language">Выберите язык</string>
+    <string name="pref_title_language">Язык</string>
+    <string name="pref_title_new_notification_sound">Сообщать о новых уведомлениях</string>
+    <string name="pref_title_ringtone">Мелодия</string>
+    <string name="pref_title_vibrate">Вибрация</string>
+    <string name="pref_title_version">Версия</string>
+    <string name="pref_title_logout">Выйти</string>
+
+    <string name="pref_default_value_user">Гость</string>
+    <string name="pref_default_value_language">RU</string>
+
+    <string name="pref_summary_theme">Нажмите, чтобы выбрать тему</string>
+    <string name="pref_summary_language">Нажмите, чтобы выбрать язык</string>
+    <string name="pref_summary_choose_ringtone">Выбор звука уведомления</string>
+    <string name="pref_summary_vibrate">Вибрировать при входящем уведомлении</string>
+
+    <!-- List themes -->
+    <string-array name="settings_list_preference_themes_titles">
+        <item>Светлая</item>
+        <item>Тёмная</item>
+        <item>Автоматически</item>
+    </string-array>
+
+    <!-- Snackbar messages -->
+    <string name="snackbar_channel_is_blocked">Канал пользователя находится в чёрном списке.</string>
+    <string name="snackbar_coub_is_not_hd">Добавляемый коуб должен быть высокого качества!</string>
+    <string name="snackbar_recoubed_from">Рекоубнуто из «%1$s»\n%2$s (%3$s)</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_title_add">Добавление коуба</string>
+    <string name="dialog_title_delete_entry">Удаление записи</string>
+    <string name="dialog_title_publish_entry">Публикация записи</string>
+    <string name="dialog_title_choose_category">Укажите рубрику</string>
+    <string name="dialog_title_select_datetime">Укажите дату и время</string>
+
+    <string name="dialog_message_coub_link">Ссылка на коуб</string>
+    <string name="dialog_message_no_internet_connection">Нет подключения к интернету.</string>
+    <string name="dialog_message_confirm_publish">Вы уверены, что хотите опубликовать эту запись прямо сейчас?</string>
+    <string name="dialog_message_confirm_delete">Вы уверены, что хотите удалить эту запись?</string>
+
+    <string name="dialog_button_cancel">Отменить</string>
+    <string name="dialog_button_confirm">Подтвердить</string>
+    <string name="dialog_button_choose">Выбрать</string>
+    <string name="dialog_button_retry">Повторить</string>
+
+    <string name="dialog_warning_not_valid_url">Не похоже на действительную ссылку</string>
+    <string name="dialog_checkbox_postponed">Отложенный постинг</string>
+
+</resources>

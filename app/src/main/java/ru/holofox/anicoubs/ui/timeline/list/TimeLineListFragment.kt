@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -28,13 +29,19 @@ class TimeLineListFragment : Fragment(), KodeinAware {
         ViewModelProviders.of(this, viewModelProvider)
             .get(TimeLineListViewModel::class.java)
     }
+
     private val viewModelProvider: TimeLineListViewModelProvider by instance()
     private var viewModelAdapter: TimelineAdapter? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        updateActionBarTitle(getString(R.string.menu_timeline))
         observeTimeline()
+    }
+
+    private fun updateActionBarTitle(title: String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title = title
     }
 
     override fun onCreateView(

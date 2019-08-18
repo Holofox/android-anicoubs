@@ -7,10 +7,18 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.vk.api.sdk.VK
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.x.closestKodein
+import org.kodein.di.generic.instance
 import ru.holofox.anicoubs.R
+import ru.holofox.anicoubs.data.provider.LocaleManagerProvider
+import ru.holofox.anicoubs.internal.enums.UnitSystem
 import ru.holofox.anicoubs.ui.LoginActivity
 
-class SettingsFragment : PreferenceFragmentCompat() {
+class SettingsFragment : PreferenceFragmentCompat(), KodeinAware {
+    override val kodein by closestKodein()
+
+    private val localeManagerProvider: LocaleManagerProvider by instance()
 
     companion object {
 
@@ -46,7 +54,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (activity as? AppCompatActivity)?.supportActionBar?.subtitle = null
+        updateActionBarTitle(getString(R.string.menu_settings))
+    }
+
+    private fun updateActionBarTitle(title: String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title = title
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -59,6 +71,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         bindPreferenceSummaryToValue(requirePreference(getString(R.string.pref_key_name)))
         bindPreferenceSummaryToValue(requirePreference(getString(R.string.pref_key_theme)))
         bindPreferenceSummaryToValue(requirePreference(getString(R.string.pref_key_language)))
+
+        bindLanguagePreference(requirePreference(getString(R.string.pref_key_language)))
     }
 
     private fun bindPreferenceSummaryToValue(preference: Preference) {
@@ -71,6 +85,14 @@ class SettingsFragment : PreferenceFragmentCompat() {
             PreferenceManager
                 .getDefaultSharedPreferences(preference.context)
                 .getString(preference.key, ""))
+    }
+
+    private fun bindLanguagePreference(preference: Preference) {
+        preference.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, value ->
+            localeManagerProvider.setNewLocale(context!!, UnitSystem.valueOf(value.toString()))
+            activity?.recreate()
+            true
+        }
     }
 
     override fun onPreferenceTreeClick(preference: Preference): Boolean {

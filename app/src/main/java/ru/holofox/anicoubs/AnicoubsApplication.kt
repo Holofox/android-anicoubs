@@ -1,6 +1,8 @@
 package ru.holofox.anicoubs
 
 import android.app.Application
+import android.content.Context
+import android.content.res.Configuration
 import androidx.lifecycle.SavedStateHandle
 import androidx.preference.PreferenceManager
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -22,10 +24,7 @@ import ru.holofox.anicoubs.data.network.api.CoubApiService
 import ru.holofox.anicoubs.data.network.api.HolofoxApiService
 import ru.holofox.anicoubs.data.network.api.VKApiService
 import ru.holofox.anicoubs.data.network.data.*
-import ru.holofox.anicoubs.data.provider.ConnectivityProvider
-import ru.holofox.anicoubs.data.provider.ConnectivityProviderImpl
-import ru.holofox.anicoubs.data.provider.UnitProvider
-import ru.holofox.anicoubs.data.provider.UnitProviderImpl
+import ru.holofox.anicoubs.data.provider.*
 import ru.holofox.anicoubs.data.repository.*
 import ru.holofox.anicoubs.data.repository.vk.*
 import ru.holofox.anicoubs.ui.LoginActivity
@@ -63,6 +62,7 @@ class AnicoubsApplication: Application(), KodeinAware {
 
         // Provider
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
+        bind<LocaleManagerProvider>() with singleton { LocaleManagerProviderImpl }
         bind<ConnectivityProvider>() with singleton { ConnectivityProviderImpl(instance()) }
 
         bind() from provider { MainViewProvider(instance(), instance(), instance(), instance(),
@@ -71,16 +71,29 @@ class AnicoubsApplication: Application(), KodeinAware {
         bind() from provider { TimeLineListViewModelProvider(instance(), instance(), instance()) }
     }
 
+    private val localeManagerProvider: LocaleManagerProvider by instance()
+
     private val tokenTracker = object: VKTokenExpiredHandler {
         override fun onTokenExpired() {
             LoginActivity.startFrom(this@AnicoubsApplication)
         }
     }
 
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(localeManagerProvider.setLocale(base))
+    }
+
     override fun onCreate() {
         super.onCreate()
         AndroidThreeTen.init(this)
         VK.addTokenExpiredHandler(tokenTracker)
+
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false)
     }
+
+    override fun onConfigurationChanged(newConfig: Configuration?) {
+        super.onConfigurationChanged(newConfig)
+        localeManagerProvider.setLocale(this)
+    }
+
 }

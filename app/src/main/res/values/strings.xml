@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Anicoubs</string>
-    <string name="app_version">2.0</string>
+    <string name="app_name" translatable="false">Anicoubs</string>
+    <string name="app_version" translatable="false">2.0</string>
     <integer name="com_vk_sdk_AppId">5614612</integer>
 
     <!-- Welcome -->
@@ -10,13 +11,13 @@
 
     <string name="vk_unknown_error">Unknown error occurred</string>
     <string name="vk_try_again">Try again later.</string>
-    <string name="vk_ok">OK</string>
+    <string name="vk_ok" translatable="false">OK</string>
 
     <!-- Navigation -->
     <string name="menu_timeline">Timeline</string>
     <string name="menu_postponed">Postponed</string>
     <string name="menu_suggests">Suggests</string>
-    <string name="menu_menu">Menu</string>
+    <string name="menu_settings">Settings</string>
 
     <!-- Timeline -->
     <string name="timeline_loading">Loading</string>
@@ -48,20 +49,20 @@
     <string name="pref_title_version">Version</string>
     <string name="pref_title_logout">Logout</string>
 
-    <string name="pref_key_name">key_name</string>
-    <string name="pref_key_theme">key_theme</string>
-    <string name="pref_key_language">key_language</string>
-    <string name="pref_key_logout">key_logout</string>
-    <string name="pref_key_about">key_about</string>
+    <string name="pref_key_name" translatable="false">key_name</string>
+    <string name="pref_key_theme" translatable="false">key_theme</string>
+    <string name="pref_key_language" translatable="false">key_language</string>
+    <string name="pref_key_logout" translatable="false">key_logout</string>
+    <string name="pref_key_about" translatable="false">key_about</string>
 
     <!-- Settings for Notifications -->
-    <string name="notifications_new_message">notifications_new_message</string>
-    <string name="key_notifications_new_message_ringtone">key_notifications_new_message_ringtone</string>
+    <string name="notifications_new_message" translatable="false">notifications_new_message</string>
+    <string name="key_notifications_new_message_ringtone" translatable="false">key_notifications_new_message_ringtone</string>
 
-    <string name="pref_key_notifications_vibrate">key_vibrate</string>
+    <string name="pref_key_notifications_vibrate" translatable="false">key_vibrate</string>
 
     <string name="pref_default_value_user">Guest</string>
-    <string name="pref_default_value_theme">Light</string>
+    <string name="pref_default_value_theme" translatable="false">Light</string>
     <string name="pref_default_value_language">EN</string>
 
     <string name="pref_summary_theme">Click to select theme</string>
@@ -114,13 +115,13 @@
 
     <string name="dialog_button_cancel">Cancel</string>
     <string name="dialog_button_confirm">Confirm</string>
-    <string name="dialog_button_ok">OK</string>
+    <string name="dialog_button_ok" translatable="false">OK</string>
     <string name="dialog_button_choose">Choose</string>
     <string name="dialog_button_retry">Retry</string>
 
     <string name="dialog_warning_not_valid_url">Does not appear to be a valid URL</string>
     <string name="dialog_checkbox_postponed">Postponed posting</string>
-    <string name="dialog_input_url_placeholder">https://coub.com/view/aabbcc</string>
+    <string name="dialog_input_url_placeholder" translatable="false">https://coub.com/view/aabbcc</string>
 
     <string-array name="dialog_categories_list">
         <item>#cool@anicoubs.</item>

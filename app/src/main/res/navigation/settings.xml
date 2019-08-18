@@ -9,6 +9,6 @@
     <fragment
             android:id="@+id/settings"
             android:name="ru.holofox.anicoubs.ui.settings.SettingsFragment"
-            android:label="Settings"/>
+            android:label="@string/menu_settings"/>
 
 </navigation>

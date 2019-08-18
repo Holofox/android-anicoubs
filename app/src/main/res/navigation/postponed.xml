@@ -10,7 +10,7 @@
     <fragment
             android:id="@+id/postponed"
             android:name="ru.holofox.anicoubs.ui.postponed.list.PostponedListFragment"
-            android:label="Postponed"
+            android:label="@string/menu_postponed"
             tools:layout="@layout/postponed_list_fragment">
         <action
                 android:id="@+id/action_postponedList_to_postponedDetail"

@@ -10,7 +10,7 @@
     <fragment
             android:id="@+id/timeline"
             android:name="ru.holofox.anicoubs.ui.timeline.list.TimeLineListFragment"
-            android:label="Timeline"
+            android:label="@string/menu_timeline"
             tools:layout="@layout/timeline_list_fragment">
         <action
                 android:id="@+id/action_timelineList_to_timelineDetail"

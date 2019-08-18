@@ -10,7 +10,7 @@
     <fragment
             android:id="@+id/suggest"
             android:name="ru.holofox.anicoubs.ui.suggest.list.SuggestListFragment"
-            android:label="Suggests"
+            android:label="@string/menu_suggests"
             tools:layout="@layout/suggest_list_fragment">
         <action
                 android:id="@+id/action_suggest_to_suggestDetail"

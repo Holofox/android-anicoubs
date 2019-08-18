@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.core.text.isDigitsOnly
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
@@ -38,12 +37,13 @@ import ru.holofox.anicoubs.data.network.response.vk.VKVideoSaveResponse
 import ru.holofox.anicoubs.databinding.ActivityMainBinding
 import ru.holofox.anicoubs.internal.Constants
 import ru.holofox.anicoubs.internal.observer.EventObserver
+import ru.holofox.anicoubs.ui.base.LocaleAppCombatActivity
 import ru.holofox.anicoubs.ui.extensions.longSnackbar
 import ru.holofox.anicoubs.ui.extensions.setupWithNavController
 import ru.holofox.anicoubs.ui.main.MainViewModel
 import ru.holofox.anicoubs.ui.main.MainViewProvider
 
-class MainActivity : AppCompatActivity(), KodeinAware {
+class MainActivity : LocaleAppCombatActivity(), KodeinAware {
 
     override val kodein by closestKodein()
 
@@ -204,7 +204,7 @@ class MainActivity : AppCompatActivity(), KodeinAware {
 
         val coubLink = viewModel.coubLink.value!!
         val parameters = VKParameters.Builder()
-            .name(coub.title)
+            .name(coub.title.capitalize())
             .description(description)
             .link(coubLink)
 

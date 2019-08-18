@@ -6,14 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 
 import ru.holofox.anicoubs.R
 
 class SuggestListFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = SuggestListFragment()
-    }
 
     private lateinit var viewModel: SuggestListViewModel
 
@@ -27,7 +24,12 @@ class SuggestListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(SuggestListViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        updateActionBarTitle(getString(R.string.menu_suggests))
+    }
+
+    private fun updateActionBarTitle(title: String) {
+        (activity as? AppCompatActivity)?.supportActionBar?.title = title
     }
 
 }
