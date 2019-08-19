@@ -101,6 +101,10 @@
     <string name="snackbar_coub_is_not_hd">The added coub must be of high quality!</string>
     <string name="snackbar_recoubed_from">Recoubed from «%1$s»\n%2$s (%3$s)</string>
 
+    <!-- Toast messages -->
+    <string name="toast_invalid_coub_url">The value provided must be a valid URL!
+        (https://coub.com/view/aabbcc)</string>
+
     <!-- Dialogs -->
     <string name="dialog_title_add">Add coub</string>
     <string name="dialog_title_delete_entry">Delete entry</string>

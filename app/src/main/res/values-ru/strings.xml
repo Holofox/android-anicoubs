@@ -66,6 +66,10 @@
     <string name="snackbar_coub_is_not_hd">Добавляемый коуб должен быть высокого качества!</string>
     <string name="snackbar_recoubed_from">Рекоубнуто из «%1$s»\n%2$s (%3$s)</string>
 
+    <!-- Toast messages -->
+    <string name="toast_invalid_coub_url">Передаваемое значение должно иметь действительный URL-адрес!
+        (https://coub.com/view/aabbcc)</string>
+
     <!-- Dialogs -->
     <string name="dialog_title_add">Добавление коуба</string>
     <string name="dialog_title_delete_entry">Удаление записи</string>

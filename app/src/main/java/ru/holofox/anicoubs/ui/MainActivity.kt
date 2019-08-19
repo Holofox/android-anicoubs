@@ -39,6 +39,7 @@ import ru.holofox.anicoubs.internal.observer.EventObserver
 import ru.holofox.anicoubs.ui.base.LocaleAppCombatActivity
 import ru.holofox.anicoubs.ui.extensions.longSnackbar
 import ru.holofox.anicoubs.ui.extensions.setupWithNavController
+import ru.holofox.anicoubs.ui.extensions.toast
 import ru.holofox.anicoubs.ui.main.MainViewModel
 import ru.holofox.anicoubs.ui.main.MainViewProvider
 
@@ -71,6 +72,8 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         } // Else, need to wait for onRestoreInstanceState
+
+        getHandleIntent()
 
         observeIsDialogShown()
         observeSnackbar()
@@ -115,6 +118,23 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
 
     override fun onSupportNavigateUp(): Boolean =
         currentNavController?.value?.navigateUp() ?: false
+
+    private fun getHandleIntent() {
+        val action = intent.action
+        val type = intent.type
+
+        if (Intent.ACTION_SEND == action && type == "text/plain") {
+            val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
+            val isValid = REGEX_COUB_URL.containsMatchIn(input = sharedText)
+
+            if (isValid) {
+                viewModel.onCoubLinkEntered(sharedText)
+                onInputDialog()
+            } else {
+                binding.root.context.toast(R.string.toast_invalid_coub_url)
+            }
+        }
+    }
 
     private fun observeIsDialogShown() {
         viewModel.isDialogShown.observe(this, EventObserver { isDialogShown ->
