@@ -30,9 +30,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
-import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
-import ru.holofox.anicoubs.data.network.response.coub.CoubChannelResponse
-import ru.holofox.anicoubs.data.network.response.vk.VKVideoSaveResponse
+import ru.holofox.anicoubs.features.data.network.api.vk.builders.VKParametersBuilder
+import ru.holofox.anicoubs.features.data.network.api.coub.models.responses.CoubChannelResponse
+import ru.holofox.anicoubs.features.data.network.api.vk.models.responses.video.VKVideoSaveResponse
 import ru.holofox.anicoubs.databinding.ActivityMainBinding
 import ru.holofox.anicoubs.internal.Constants
 import ru.holofox.anicoubs.internal.observer.EventObserver
@@ -173,16 +173,16 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
 
     private fun observeChannelResponse() {
         viewModel.channelResponse.observe(this, EventObserver { channel ->
-            if (channel.meta.vkontakte == null) {
+        //    if (channel.meta.vkontakte == null) {
                 saveVideo(channel)
-            } else {
+        /*    } else {
                 channel.meta.vkontakte?.let {
                     if (it.isEmpty() || it.matches(REGEX_NUMERIC_CHANNEL_ID))
                         saveVideo(channel)
                     else
                         viewModel.getUser(it)
                 }
-            }
+            } */
         })
     }
 
@@ -222,7 +222,7 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
         }
 
         val coubLink = viewModel.coubLink.value!!
-        val parameters = VKParameters.Builder()
+        val parameters = VKParametersBuilder.Builder()
             .name(coub.title.capitalize())
             .description(description)
             .link(coubLink)
@@ -262,7 +262,7 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
 
         val attachment = "video" + video.ownerId.toString() + "_" + video.videoId
 
-        val parameters = VKParameters.Builder()
+        val parameters = VKParametersBuilder.Builder()
             .ownerId(Constants.TARGET_GROUP_ID)
             .fromGroup(true)
             .attachments(attachment)

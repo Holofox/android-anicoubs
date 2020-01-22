@@ -1,12 +1,11 @@
 package ru.holofox.anicoubs.ui.timeline.list
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import kotlinx.coroutines.launch
-import ru.holofox.anicoubs.data.provider.UnitProvider
-import ru.holofox.anicoubs.data.repository.CoubRepository
+import ru.holofox.anicoubs.features.domain.providers.UnitProvider
+import ru.holofox.anicoubs.features.domain.repositories.CoubRepository
 import ru.holofox.anicoubs.internal.Constants.NETWORK_ERROR_SHOWN
 import ru.holofox.anicoubs.internal.CoubRepositoryError
 import ru.holofox.anicoubs.ui.base.ScopedViewModel

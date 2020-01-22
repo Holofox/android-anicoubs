@@ -3,13 +3,13 @@ package ru.holofox.anicoubs.ui.main
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ru.holofox.anicoubs.data.provider.UnitProvider
+import ru.holofox.anicoubs.features.domain.providers.UnitProvider
 
-import ru.holofox.anicoubs.data.repository.CoubRepository
-import ru.holofox.anicoubs.data.repository.HolofoxRepository
-import ru.holofox.anicoubs.data.repository.vk.VKUsersRepository
-import ru.holofox.anicoubs.data.repository.vk.VKWallRepository
-import ru.holofox.anicoubs.data.repository.vk.VKVideoRepository
+import ru.holofox.anicoubs.features.domain.repositories.CoubRepository
+import ru.holofox.anicoubs.features.domain.repositories.HolofoxRepository
+import ru.holofox.anicoubs.features.domain.repositories.vk.VKUsersRepository
+import ru.holofox.anicoubs.features.domain.repositories.vk.VKWallRepository
+import ru.holofox.anicoubs.features.domain.repositories.vk.VKVideoRepository
 
 class MainViewProvider(
     private val coubRepository: CoubRepository,

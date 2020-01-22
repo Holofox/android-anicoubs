@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 
 import kotlinx.coroutines.launch
-import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
-import ru.holofox.anicoubs.data.db.entity.vk.wall.Video
-import ru.holofox.anicoubs.data.db.unitlocalized.vk.UnitSpecificVKWallMinimalEntry
-import ru.holofox.anicoubs.data.repository.vk.VKVideoRepository
+import ru.holofox.anicoubs.features.data.network.api.vk.builders.VKParametersBuilder
+import ru.holofox.anicoubs.features.data.network.api.vk.models.wall.VKWallVideo
+import ru.holofox.anicoubs.features.domain.db.unitlocalized.vk.UnitSpecificVKWallMinimalEntry
+import ru.holofox.anicoubs.features.domain.repositories.vk.VKVideoRepository
 
-import ru.holofox.anicoubs.data.repository.vk.VKWallRepository
+import ru.holofox.anicoubs.features.domain.repositories.vk.VKWallRepository
 import ru.holofox.anicoubs.internal.Constants.NETWORK_ERROR_SHOWN
 import ru.holofox.anicoubs.internal.VKVideoRepositoryError
 import ru.holofox.anicoubs.internal.VKWallRepositoryError
@@ -61,7 +61,7 @@ class PostponedListViewModel(
 
     fun onItemPublish(item: UnitSpecificVKWallMinimalEntry) = launch {
         try {
-            val parameters = VKParameters.Builder()
+            val parameters = VKParametersBuilder.Builder()
                 .ownerId(item.ownerId)
                 .postId(item.postId)
                 .build()
@@ -75,9 +75,9 @@ class PostponedListViewModel(
 
     fun onItemDelete(item: UnitSpecificVKWallMinimalEntry) = launch {
 
-        fun onVideoDelete(video: Video) = launch {
+        fun onVideoDelete(video: VKWallVideo) = launch {
             try {
-                val parameters = VKParameters.Builder()
+                val parameters = VKParametersBuilder.Builder()
                     .videoId(video.id)
                     .ownerId(video.ownerId)
                     .build()
@@ -89,7 +89,7 @@ class PostponedListViewModel(
         }
 
         try {
-            val parameters = VKParameters.Builder()
+            val parameters = VKParametersBuilder.Builder()
                 .ownerId(item.ownerId)
                 .postId(item.postId)
                 .build()

@@ -5,21 +5,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import kotlinx.coroutines.launch
 import ru.holofox.anicoubs.R
-import ru.holofox.anicoubs.data.db.entity.coub.CoubEntry
-import ru.holofox.anicoubs.data.db.entity.vk.builder.VKParameters
+import ru.holofox.anicoubs.features.data.db.entities.coub.CoubEntry
+import ru.holofox.anicoubs.features.data.network.api.vk.builders.VKParametersBuilder
 import java.util.*
 
-import ru.holofox.anicoubs.data.network.NetworkException
-import ru.holofox.anicoubs.data.network.await
-import ru.holofox.anicoubs.data.network.response.coub.CoubChannelResponse
-import ru.holofox.anicoubs.data.network.response.vk.VKUsersGetResponse
-import ru.holofox.anicoubs.data.network.response.vk.VKVideoSaveResponse
-import ru.holofox.anicoubs.data.provider.UnitProvider
-import ru.holofox.anicoubs.data.repository.CoubRepository
-import ru.holofox.anicoubs.data.repository.HolofoxRepository
-import ru.holofox.anicoubs.data.repository.vk.VKUsersRepository
-import ru.holofox.anicoubs.data.repository.vk.VKVideoRepository
-import ru.holofox.anicoubs.data.repository.vk.VKWallRepository
+import ru.holofox.anicoubs.features.data.network.NetworkException
+import ru.holofox.anicoubs.features.data.network.await
+import ru.holofox.anicoubs.features.data.network.api.coub.models.responses.CoubChannelResponse
+import ru.holofox.anicoubs.features.data.network.api.vk.models.responses.VKUsersGetResponse
+import ru.holofox.anicoubs.features.data.network.api.vk.models.responses.video.VKVideoSaveResponse
+import ru.holofox.anicoubs.features.domain.providers.UnitProvider
+import ru.holofox.anicoubs.features.domain.repositories.CoubRepository
+import ru.holofox.anicoubs.features.domain.repositories.HolofoxRepository
+import ru.holofox.anicoubs.features.domain.repositories.vk.VKUsersRepository
+import ru.holofox.anicoubs.features.domain.repositories.vk.VKVideoRepository
+import ru.holofox.anicoubs.features.domain.repositories.vk.VKWallRepository
 import ru.holofox.anicoubs.internal.VKVideoRepositoryError
 import ru.holofox.anicoubs.internal.observer.SingleEvent
 import ru.holofox.anicoubs.ui.base.ScopedViewModel
@@ -129,7 +129,7 @@ class MainViewModel(
         }
     }
 
-    fun saveVideo(parameters: VKParameters) = launch {
+    fun saveVideo(parameters: VKParametersBuilder) = launch {
         try {
             val result = vkVideoRepository.videoSave(parameters).await()
             _videoSaveResponse.postValue(SingleEvent(result))
@@ -138,10 +138,10 @@ class MainViewModel(
         }
     }
 
-    fun publishPost(parameters: VKParameters, video: VKVideoSaveResponse) = launch {
+    fun publishPost(parameters: VKParametersBuilder, video: VKVideoSaveResponse) = launch {
         fun videoDelete() = launch {
             try {
-                val videoParameters = VKParameters.Builder()
+                val videoParameters = VKParametersBuilder.Builder()
                     .videoId(video.videoId)
                     .ownerId(video.ownerId)
                     .build()

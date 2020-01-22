@@ -4,8 +4,8 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import ru.holofox.anicoubs.data.db.entity.coub.timeline.Tag
-import ru.holofox.anicoubs.data.db.entity.coub.timeline.Versions
+import ru.holofox.anicoubs.features.data.network.api.coub.models.timeline.Tag
+import ru.holofox.anicoubs.features.data.network.api.coub.models.timeline.Versions
 import ru.holofox.anicoubs.internal.bindings.bindImageUrl
 
 object TimelineListBindings {

@@ -11,7 +11,7 @@ import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 import ru.holofox.anicoubs.R
-import ru.holofox.anicoubs.data.provider.LocaleManagerProvider
+import ru.holofox.anicoubs.features.domain.providers.LocaleManagerProvider
 import ru.holofox.anicoubs.internal.enums.UnitSystem
 import ru.holofox.anicoubs.ui.LoginActivity
 

@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.DiffUtil
 import ru.holofox.anicoubs.BR
 import ru.holofox.anicoubs.R
 
-import ru.holofox.anicoubs.data.db.unitlocalized.vk.UnitSpecificVKWallMinimalEntry
+import ru.holofox.anicoubs.features.domain.db.unitlocalized.vk.UnitSpecificVKWallMinimalEntry
 import ru.holofox.anicoubs.ui.base.DataBindingAdapter
 
 /**

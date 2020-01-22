@@ -6,7 +6,7 @@
         <import type="ru.holofox.anicoubs.internal.bindings.BindingConverters"/>
         <variable
                 name="postponedListModel"
-                type="ru.holofox.anicoubs.data.db.unitlocalized.vk.UnitSpecificVKWallMinimalEntry" />
+                type="ru.holofox.anicoubs.features.domain.db.unitlocalized.vk.UnitSpecificVKWallMinimalEntry" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

@@ -22,7 +22,7 @@ import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
 
 import ru.holofox.anicoubs.R
-import ru.holofox.anicoubs.data.db.unitlocalized.vk.UnitSpecificVKWallMinimalEntry
+import ru.holofox.anicoubs.features.domain.db.unitlocalized.vk.UnitSpecificVKWallMinimalEntry
 import ru.holofox.anicoubs.databinding.PostponedListFragmentBinding
 import ru.holofox.anicoubs.internal.observer.EventObserver
 

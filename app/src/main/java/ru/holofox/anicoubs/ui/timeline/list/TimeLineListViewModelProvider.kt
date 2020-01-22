@@ -3,8 +3,8 @@ package ru.holofox.anicoubs.ui.timeline.list
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import ru.holofox.anicoubs.data.provider.UnitProvider
-import ru.holofox.anicoubs.data.repository.CoubRepository
+import ru.holofox.anicoubs.features.domain.providers.UnitProvider
+import ru.holofox.anicoubs.features.domain.repositories.CoubRepository
 
 class TimeLineListViewModelProvider(
     private val acRepository: CoubRepository,

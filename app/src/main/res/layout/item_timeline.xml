@@ -7,7 +7,7 @@
         <import type="ru.holofox.anicoubs.internal.bindings.BindingConverters"/>
         <variable
                 name="timelineListModel"
-                type="ru.holofox.anicoubs.data.db.unitlocalized.coub.UnitSpecificTimelineMinimalEntry" />
+                type="ru.holofox.anicoubs.features.domain.db.unitlocalized.coub.UnitSpecificTimelineMinimalEntry" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
