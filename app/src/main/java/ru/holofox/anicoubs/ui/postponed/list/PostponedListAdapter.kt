@@ -8,7 +8,7 @@ import ru.holofox.anicoubs.features.domain.db.unitlocalized.vk.UnitSpecificVKWal
 import ru.holofox.anicoubs.ui.base.DataBindingAdapter
 
 /**
- * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
+ * This class implements a RecyclerView ListAdapter which uses Data Binding to present [List]
  * data, including computing diffs between lists.
  */
 class PostponedListAdapter :

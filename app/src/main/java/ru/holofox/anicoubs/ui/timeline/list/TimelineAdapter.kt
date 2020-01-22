@@ -7,7 +7,7 @@ import ru.holofox.anicoubs.features.domain.db.unitlocalized.coub.UnitSpecificTim
 import ru.holofox.anicoubs.ui.base.DataBindingAdapter
 
 /**
- * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
+ * This class implements a RecyclerView ListAdapter which uses Data Binding to present [List]
  * data, including computing diffs between lists.
  */
 class TimelineAdapter :

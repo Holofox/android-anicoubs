@@ -84,7 +84,7 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
         observeVideoResponse()
     }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         // Now that BottomNavigationBar has restored its instance state
         // and its selectedItemId, we can proceed with setting up the
@@ -126,14 +126,17 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
         val type = intent.type
 
         if (Intent.ACTION_SEND == action && type == "text/plain") {
-            val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
-            val isValid = REGEX_COUB_URL.containsMatchIn(input = sharedText)
+            val sharedText = intent.getCharSequenceExtra(Intent.EXTRA_TEXT)
 
-            if (isValid) {
-                viewModel.onCoubLinkEntered(sharedText)
-                onInputDialog()
-            } else {
-                binding.root.context.toast(R.string.toast_invalid_coub_url)
+            sharedText?.let {
+                val isValid = REGEX_COUB_URL.containsMatchIn(input = sharedText)
+
+                if (isValid) {
+                    viewModel.onCoubLinkEntered(sharedText)
+                    onInputDialog()
+                } else {
+                    binding.root.context.toast(R.string.toast_invalid_coub_url)
+                }
             }
         }
     }

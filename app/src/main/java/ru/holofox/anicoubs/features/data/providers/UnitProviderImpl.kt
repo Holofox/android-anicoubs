@@ -2,10 +2,10 @@ package ru.holofox.anicoubs.features.data.providers
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.preference.PreferenceManager
 
 import androidx.annotation.StringRes
 import androidx.annotation.PluralsRes
+import androidx.preference.PreferenceManager
 import ru.holofox.anicoubs.features.domain.providers.UnitProvider
 
 import ru.holofox.anicoubs.internal.enums.UnitSystem

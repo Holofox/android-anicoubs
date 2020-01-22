@@ -6,8 +6,8 @@ import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
+import androidx.preference.PreferenceManager
 import java.util.*
-import android.preference.PreferenceManager
 import ru.holofox.anicoubs.features.domain.providers.LocaleManagerProvider
 
 import ru.holofox.anicoubs.internal.enums.UnitSystem
