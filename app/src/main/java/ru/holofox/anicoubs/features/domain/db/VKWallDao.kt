@@ -19,13 +19,13 @@ interface VKWallDao {
     fun insert(post: List<VKWallItemEntry>, group: List<VKGroupEntry>)
 
     @Query("select * from vk_wall order by postId desc")
-    fun getWall() : LiveData<List<VKWallEntry>>
+    fun getWall(): LiveData<List<VKWallEntry>>
 
     @Query("select * from vk_wall, vk_groups where vk_wall.ownerId == -vk_groups.groupId")
-    fun getWallMinimal() : LiveData<List<VKWallMinimalEntry>>
+    fun getWallMinimal(): LiveData<List<VKWallMinimalEntry>>
 
     @Query("select * from vk_groups")
-    fun getGroup() : LiveData<List<VKGroupsEntry>>
+    fun getGroup(): LiveData<List<VKGroupsEntry>>
 
     @Transaction
     fun update(post: List<VKWallItemEntry>, VKGroup: List<VKGroupEntry>) {
@@ -34,7 +34,7 @@ interface VKWallDao {
     }
 
     @Query("select count(postId) from vk_wall where date >= :startDate")
-    fun count(startDate: Long) : Int
+    fun count(startDate: Long): Int
 
     @Query("delete from vk_wall where postId = :postId")
     fun delete(postId: Int)

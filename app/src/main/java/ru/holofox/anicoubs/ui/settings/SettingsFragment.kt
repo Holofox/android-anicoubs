@@ -26,25 +26,26 @@ class SettingsFragment : PreferenceFragmentCompat(), KodeinAware {
          * A preference value change listener that updates the preference's summary
          * to reflect its new value.
          */
-        private val sBindPreferenceSummaryToValueListener = Preference.OnPreferenceChangeListener { preference, value ->
+        private val sBindPreferenceSummaryToValueListener =
+            Preference.OnPreferenceChangeListener { preference, value ->
 
-            val stringValue = value.toString()
+                val stringValue = value.toString()
 
-            if (preference is ListPreference) {
-                // For list preferences, look up the correct display value in
-                // the preference's 'entries' list.
-                val index = preference.findIndexOfValue(stringValue)
+                if (preference is ListPreference) {
+                    // For list preferences, look up the correct display value in
+                    // the preference's 'entries' list.
+                    val index = preference.findIndexOfValue(stringValue)
 
-                // Set the summary to reflect the new value.
-                preference.setSummary(if (index >= 0) preference.entries[index] else null)
+                    // Set the summary to reflect the new value.
+                    preference.setSummary(if (index >= 0) preference.entries[index] else null)
 
-            } else {
-                // For all other preferences, set the summary to the value's
-                // simple string representation.
-                preference.summary = stringValue
+                } else {
+                    // For all other preferences, set the summary to the value's
+                    // simple string representation.
+                    preference.summary = stringValue
+                }
+                true
             }
-            true
-        }
 
         private fun PreferenceFragmentCompat.requirePreference(key: String): Preference {
             return findPreference(key)!!
@@ -81,10 +82,12 @@ class SettingsFragment : PreferenceFragmentCompat(), KodeinAware {
 
         // Trigger the listener immediately with the preference's
         // current value.
-        sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
+        sBindPreferenceSummaryToValueListener.onPreferenceChange(
+            preference,
             PreferenceManager
                 .getDefaultSharedPreferences(preference.context)
-                .getString(preference.key, ""))
+                .getString(preference.key, "")
+        )
     }
 
     private fun bindLanguagePreference(preference: Preference) {

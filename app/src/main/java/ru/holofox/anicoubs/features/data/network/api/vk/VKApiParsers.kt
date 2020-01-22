@@ -7,7 +7,7 @@ import com.vk.api.sdk.exceptions.VKApiIllegalResponseException
 import org.json.JSONException
 import org.json.JSONObject
 
-class ResponseApiParser<T: Any>(val type: Class<T>?): VKApiResponseParser<T> {
+class ResponseApiParser<T : Any>(val type: Class<T>?) : VKApiResponseParser<T> {
     override fun parse(response: String): T {
         try {
             val joResponse = JSONObject(response).getJSONObject("response").toString()
@@ -20,7 +20,7 @@ class ResponseApiParser<T: Any>(val type: Class<T>?): VKApiResponseParser<T> {
     }
 }
 
-class ResponseApiArrayParser<T: Any>(val type: Class<T>?): VKApiResponseParser<T> {
+class ResponseApiArrayParser<T : Any>(val type: Class<T>?) : VKApiResponseParser<T> {
     override fun parse(response: String): T {
         try {
             val joResponse = JSONObject(response).toString()
@@ -33,7 +33,7 @@ class ResponseApiArrayParser<T: Any>(val type: Class<T>?): VKApiResponseParser<T
     }
 }
 
-class ResponseApiParserToBoolean: VKApiResponseParser<Boolean> {
+class ResponseApiParserToBoolean : VKApiResponseParser<Boolean> {
     override fun parse(response: String): Boolean {
         try {
             return JSONObject(response).get("response") == 1
@@ -43,7 +43,7 @@ class ResponseApiParserToBoolean: VKApiResponseParser<Boolean> {
     }
 }
 
-class ResponseApiParserToLong: VKApiResponseParser<Long> {
+class ResponseApiParserToLong : VKApiResponseParser<Long> {
     override fun parse(response: String): Long {
         try {
             return JSONObject(response).getLong("response")

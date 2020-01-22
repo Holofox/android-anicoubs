@@ -18,8 +18,7 @@ data class VKWallMinimalEntry(
     override val name: String
 ) : UnitSpecificVKWallMinimalEntry {
 
-    override fun wallGroupUrl()
-            = String.format(VK_WALL_URL_TEMPLATE, ownerId, postId)
+    override fun wallGroupUrl() = String.format(VK_WALL_URL_TEMPLATE, ownerId, postId)
 }
 
 fun List<VKWallMinimalEntry>.asDomainModel(): List<UnitSpecificVKWallMinimalEntry> {

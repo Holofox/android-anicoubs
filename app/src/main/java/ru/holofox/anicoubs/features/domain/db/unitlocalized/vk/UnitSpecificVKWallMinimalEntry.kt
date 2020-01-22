@@ -15,7 +15,7 @@ interface UnitSpecificVKWallMinimalEntry {
     val photo100: String
     val name: String
 
-    override fun equals(other: Any?) : Boolean
+    override fun equals(other: Any?): Boolean
 
     fun wallGroupUrl(): String
 }

@@ -31,10 +31,14 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.snackbar.Snackbar
 
 // Apply to BottomNavigationView
-class BottomNavigationFABBehavior(context: Context?, attrs: AttributeSet?):
+class BottomNavigationFABBehavior(context: Context?, attrs: AttributeSet?) :
     CoordinatorLayout.Behavior<View>(context, attrs) {
 
-    override fun layoutDependsOn(parent: CoordinatorLayout, child: View, dependency: View): Boolean {
+    override fun layoutDependsOn(
+        parent: CoordinatorLayout,
+        child: View,
+        dependency: View
+    ): Boolean {
         return dependency is Snackbar.SnackbarLayout
     }
 
@@ -42,7 +46,11 @@ class BottomNavigationFABBehavior(context: Context?, attrs: AttributeSet?):
         child.translationY = 0f
     }
 
-    override fun onDependentViewChanged(parent: CoordinatorLayout, child: View, dependency: View): Boolean {
+    override fun onDependentViewChanged(
+        parent: CoordinatorLayout,
+        child: View,
+        dependency: View
+    ): Boolean {
         return updateButton(child, dependency)
     }
 

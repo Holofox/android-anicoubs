@@ -51,13 +51,13 @@ import ru.holofox.anicoubs.ui.main.MainViewProvider
 import ru.holofox.anicoubs.ui.postponed.list.PostponedListViewModelProvider
 import ru.holofox.anicoubs.ui.timeline.list.TimeLineListViewModelProvider
 
-class AnicoubsApplication: Application(), KodeinAware {
+class AnicoubsApplication : Application(), KodeinAware {
     override val kodein = Kodein.lazy {
         import(androidXModule(this@AnicoubsApplication))
 
         bind() from singleton { AnicoubsDatabase(instance()) }
         bind() from singleton { instance<AnicoubsDatabase>().postFeedDao() }
-        bind() from singleton { instance<AnicoubsDatabase>().vkDao()}
+        bind() from singleton { instance<AnicoubsDatabase>().vkDao() }
 
         bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
         bind<SavedStateHandle>() with singleton { SavedStateHandle() }
@@ -84,15 +84,19 @@ class AnicoubsApplication: Application(), KodeinAware {
         bind<LocaleManagerProvider>() with singleton { LocaleManagerProviderImpl }
         bind<ConnectivityProvider>() with singleton { ConnectivityProviderImpl(instance()) }
 
-        bind() from provider { MainViewProvider(instance(), instance(), instance(), instance(),
-            instance(), instance(), instance()) }
+        bind() from provider {
+            MainViewProvider(
+                instance(), instance(), instance(), instance(),
+                instance(), instance(), instance()
+            )
+        }
         bind() from provider { PostponedListViewModelProvider(instance(), instance(), instance()) }
         bind() from provider { TimeLineListViewModelProvider(instance(), instance(), instance()) }
     }
 
     private val localeManagerProvider: LocaleManagerProvider by instance()
 
-    private val tokenTracker = object: VKTokenExpiredHandler {
+    private val tokenTracker = object : VKTokenExpiredHandler {
         override fun onTokenExpired() {
             LoginActivity.startFrom(this@AnicoubsApplication)
         }

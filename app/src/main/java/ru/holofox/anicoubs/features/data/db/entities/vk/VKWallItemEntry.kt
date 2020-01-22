@@ -31,7 +31,7 @@ data class VKWallItemEntry(
     val canDelete: Int,
     @SerializedName("can_pin")
     val canPin: Int,
-    val attachments:  List<VKWallAttachment>?,
+    val attachments: List<VKWallAttachment>?,
     @SerializedName("post_source")
     val postSource: VKWallPostSource,
     val comments: VKWallComments,

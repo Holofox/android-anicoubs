@@ -9,7 +9,7 @@ import ru.holofox.anicoubs.features.domain.repositories.CoubRepository
 class TimeLineListViewModelProvider(
     private val acRepository: CoubRepository,
     private val unitProvider: UnitProvider,
-    private val savedStateHandle : SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")

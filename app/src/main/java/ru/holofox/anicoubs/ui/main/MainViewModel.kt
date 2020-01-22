@@ -89,9 +89,12 @@ class MainViewModel(
                 coub.mediaBlocks.remixedFromCoubs.isNotEmpty() -> {
                     coub.mediaBlocks.remixedFromCoubs[0]?.let {
                         val views = unitProvider.quantityFromRes(
-                            R.plurals.quantity_views, it.coubViewsCount, it.coubViewsCount)
-                        val message = unitProvider.getString(R.string.snackbar_recoubed_from,
-                            it.title, it.coubChannelTitle, views)
+                            R.plurals.quantity_views, it.coubViewsCount, it.coubViewsCount
+                        )
+                        val message = unitProvider.getString(
+                            R.string.snackbar_recoubed_from,
+                            it.title, it.coubChannelTitle, views
+                        )
                         onSnackBarShow(message)
                     }
                 }
@@ -188,7 +191,7 @@ class MainViewModel(
         savedStateHandle.set(CATEGORY_ID, 0)
     }
 
-   companion object {
+    companion object {
         const val COUB_LINK = "coub_link"
         const val IS_POSTPONED_PUBLISH = "is_postponed_publish"
         const val CATEGORY_ID = "category_id"

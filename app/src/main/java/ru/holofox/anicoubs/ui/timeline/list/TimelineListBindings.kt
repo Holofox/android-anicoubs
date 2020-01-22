@@ -14,7 +14,8 @@ object TimelineListBindings {
      * Binding adapter used to display images from Avatar[Versions] using Glide
      */
     @BindingAdapter("imageUrlFromAvatarVersions")
-    @JvmStatic fun bindImageFromAvatarVersions(imageView: ImageView, versions: Versions) {
+    @JvmStatic
+    fun bindImageFromAvatarVersions(imageView: ImageView, versions: Versions) {
         bindImageUrl(
             imageView,
             versions.getImageUrl("profile_pic_new")
@@ -25,7 +26,8 @@ object TimelineListBindings {
      * Binding adapter used to display images from FirstFrame[Versions] using Glide
      */
     @BindingAdapter("imageUrlFromFirstFrameVersions")
-    @JvmStatic fun bindImageFromFirstFrameVersions(imageView: ImageView, versions: Versions) {
+    @JvmStatic
+    fun bindImageFromFirstFrameVersions(imageView: ImageView, versions: Versions) {
         bindImageUrl(imageView, versions.getImageUrl("med"))
     }
 
@@ -33,7 +35,8 @@ object TimelineListBindings {
      * Binding adapter used to display tags in [ChipGroup] from [Tag]
      */
     @BindingAdapter("tags")
-    @JvmStatic fun bindTags(chipGroup: ChipGroup, tags: List<Tag>?) {
+    @JvmStatic
+    fun bindTags(chipGroup: ChipGroup, tags: List<Tag>?) {
         tags?.let {
             for (index in it.indices) {
                 val chip = Chip(chipGroup.context)

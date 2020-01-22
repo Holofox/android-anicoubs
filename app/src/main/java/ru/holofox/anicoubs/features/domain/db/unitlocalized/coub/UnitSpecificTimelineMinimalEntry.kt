@@ -20,5 +20,5 @@ interface UnitSpecificTimelineMinimalEntry {
     val recoubsCount: Int
     val likesCount: Int
 
-    override fun equals(other: Any?) : Boolean
+    override fun equals(other: Any?): Boolean
 }

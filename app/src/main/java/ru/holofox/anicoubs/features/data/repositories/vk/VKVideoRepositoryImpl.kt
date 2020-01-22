@@ -19,7 +19,7 @@ class VKVideoRepositoryImpl(
     private val vkApiService: VKApiService
 ) : VKVideoRepository {
 
-    override suspend fun videoSave(parameters: VKParametersBuilder) : NetworkCall<VKVideoSaveResponse> {
+    override suspend fun videoSave(parameters: VKParametersBuilder): NetworkCall<VKVideoSaveResponse> {
         return withContext(Dispatchers.IO) {
             val response = NetworkCall<VKVideoSaveResponse>()
             try {

@@ -13,7 +13,8 @@ import java.util.regex.Pattern
 object PostponedListBindings {
 
     @BindingAdapter("identifyHashtags")
-    @JvmStatic fun bindHashtags(textView: TextView, text: String) {
+    @JvmStatic
+    fun bindHashtags(textView: TextView, text: String) {
         val spannableText = SpannableString(text)
         val matcher = Pattern.compile("#([A-Za-z0-9@_-]+)").matcher(spannableText)
 

@@ -1,7 +1,6 @@
 package ru.holofox.anicoubs.features.data.network.api.vk.models.wall
 
 import com.google.gson.annotations.SerializedName
-import ru.holofox.anicoubs.features.data.network.api.vk.models.wall.VKWallImageVersions
 
 data class VKWallVideo(
     val id: Int,

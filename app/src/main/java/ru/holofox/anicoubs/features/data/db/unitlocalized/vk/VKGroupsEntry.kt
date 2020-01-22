@@ -3,7 +3,7 @@ package ru.holofox.anicoubs.features.data.db.unitlocalized.vk
 import androidx.room.ColumnInfo
 import ru.holofox.anicoubs.features.domain.db.unitlocalized.vk.UnitSpecificVKGroupsEntry
 
-class VKGroupsEntry (
+class VKGroupsEntry(
     @ColumnInfo(name = "adminLevel")
     override val adminLevel: Int,
     @ColumnInfo(name = "groupId")

@@ -16,7 +16,7 @@ class VKUsersRepositoryImpl(
     private val vkNetworkDataSource: VKNetworkDataSource
 ) : VKUsersRepository {
 
-    override suspend fun usersGet(userIds: String) : NetworkCall<VKUsersGetResponse> {
+    override suspend fun usersGet(userIds: String): NetworkCall<VKUsersGetResponse> {
         return withContext(Dispatchers.IO) {
             val response = NetworkCall<VKUsersGetResponse>()
             val parameters = VKParametersBuilder.Builder()

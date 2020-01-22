@@ -19,7 +19,7 @@ interface TimeLineDao {
     fun getTimeline(): LiveData<List<TimelineMinimalEntry>>
 
     @Query("select count(id) from coubs where date(updatedAt) >= date(:startDate)")
-    fun count(startDate: LocalDateTime) : Int
+    fun count(startDate: LocalDateTime): Int
 
     @Query("delete from coubs where date(publishedAt) < date(:firstDateToKeep)")
     fun deleteOldEntries(firstDateToKeep: LocalDateTime)

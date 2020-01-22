@@ -16,7 +16,8 @@ import org.threeten.bp.ZoneId
  * from Boolean to a visibility integer.
  */
 object ConverterUtil {
-    @JvmStatic fun isZero(number: Int): Boolean {
+    @JvmStatic
+    fun isZero(number: Int): Boolean {
         return number == 0
     }
 }
@@ -28,17 +29,20 @@ object ConverterUtil {
  * There is no need to specify that this converter should be used. [BindingConversion]s are
  * applied automatically.
  */
-object BindingConverters{
+object BindingConverters {
 
     @BindingConversion
-    @JvmStatic fun booleanToVisibility(isNotVisible: Boolean): Int {
+    @JvmStatic
+    fun booleanToVisibility(isNotVisible: Boolean): Int {
         return if (isNotVisible) View.GONE else View.VISIBLE
     }
 
     @BindingConversion
-    @JvmStatic fun localDateTimeToRelativeTimeSpan(localDateTime: LocalDateTime) : CharSequence {
+    @JvmStatic
+    fun localDateTimeToRelativeTimeSpan(localDateTime: LocalDateTime): CharSequence {
         return DateUtils.getRelativeTimeSpanString(
-            localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli())
+            localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+        )
     }
 
 }

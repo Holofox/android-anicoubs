@@ -13,7 +13,7 @@ object DateConverter {
     @TypeConverter
     @JvmStatic
     fun toLocalDateTime(str: String?) = str?.let {
-       LocalDateTime.ofInstant(Instant.parse(it), ZoneId.systemDefault())
+        LocalDateTime.ofInstant(Instant.parse(it), ZoneId.systemDefault())
     }
 
     @TypeConverter

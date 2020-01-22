@@ -7,7 +7,7 @@ import com.vk.api.sdk.internal.ApiCommand
 
 import ru.holofox.anicoubs.features.data.network.api.vk.builders.VKParametersBuilder
 
-abstract class VKBaseApiCommand<T: Any>(
+abstract class VKBaseApiCommand<T : Any>(
     private val parameters: VKParametersBuilder = VKParametersBuilder.Builder().build(),
     private val method: String,
     private val parser: VKApiResponseParser<T>

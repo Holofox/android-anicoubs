@@ -12,9 +12,9 @@ import ru.holofox.anicoubs.features.domain.providers.ConnectivityProvider
 
 class VKNetworkDataSourceImpl(
     private val connectivityProvider: ConnectivityProvider
-): VKNetworkDataSource {
+) : VKNetworkDataSource {
 
-    override suspend fun <T>perform(apiCommand: ApiCommand<T>) : NetworkCall<T> {
+    override suspend fun <T> perform(apiCommand: ApiCommand<T>): NetworkCall<T> {
         val response = NetworkCall<T>()
 
         if (!connectivityProvider.isOnline())
@@ -25,6 +25,7 @@ class VKNetworkDataSourceImpl(
             override fun success(result: T) {
                 response.onSuccess(result)
             }
+
             override fun fail(error: VKApiExecutionException) {
                 response.onError(NetworkException(error.detailMessage))
             }

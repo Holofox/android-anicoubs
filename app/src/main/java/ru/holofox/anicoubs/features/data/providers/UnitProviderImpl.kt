@@ -21,7 +21,7 @@ class UnitProviderImpl(context: Context) : UnitProvider {
         return UnitSystem.valueOf(preferences.getString(KEY_NAME, UnitSystem.EN.name)!!)
     }
 
-    override fun getString(@StringRes resId: Int, vararg format: Any) : String {
+    override fun getString(@StringRes resId: Int, vararg format: Any): String {
         return appContext.getString(resId, *format)
     }
 

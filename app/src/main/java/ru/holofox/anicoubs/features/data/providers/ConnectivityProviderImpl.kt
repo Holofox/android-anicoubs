@@ -16,6 +16,6 @@ class ConnectivityProviderImpl(context: Context) : ConnectivityProvider {
         return networkInfo != null && networkInfo.isConnected
     }
 
-    override fun getNetworkErrorMessage() : String
-            = appContext.getString(R.string.dialog_message_no_internet_connection)
+    override fun getNetworkErrorMessage(): String =
+        appContext.getString(R.string.dialog_message_no_internet_connection)
 }

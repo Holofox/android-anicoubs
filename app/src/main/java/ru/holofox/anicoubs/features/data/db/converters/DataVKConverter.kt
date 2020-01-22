@@ -13,7 +13,7 @@ object DataVKConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toAttachments(str: String?) : List<VKWallAttachment>? = str?.fromJson()
+    fun toAttachments(str: String?): List<VKWallAttachment>? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -21,7 +21,7 @@ object DataVKConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toComments(str: String?) : VKWallComments? = str?.fromJson()
+    fun toComments(str: String?): VKWallComments? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -29,7 +29,7 @@ object DataVKConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toLikes(str: String?) : VKWallLikes? = str?.fromJson()
+    fun toLikes(str: String?): VKWallLikes? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -37,7 +37,7 @@ object DataVKConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toPostSource(str: String?) : VKWallPostSource? = str?.fromJson()
+    fun toPostSource(str: String?): VKWallPostSource? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -45,7 +45,7 @@ object DataVKConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toReposts(str: String?) : VKWallReposts? = str?.fromJson()
+    fun toReposts(str: String?): VKWallReposts? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -53,7 +53,7 @@ object DataVKConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toViews(str: String?) : VKWallViews? = str?.fromJson()
+    fun toViews(str: String?): VKWallViews? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -61,6 +61,6 @@ object DataVKConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toImageVersions(str: String?) : List<VKWallImageVersions>? = str?.fromJson()
+    fun toImageVersions(str: String?): List<VKWallImageVersions>? = str?.fromJson()
 
 }

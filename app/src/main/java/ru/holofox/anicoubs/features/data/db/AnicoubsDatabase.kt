@@ -24,7 +24,8 @@ abstract class AnicoubsDatabase : RoomDatabase() {
     abstract fun vkDao(): VKWallDao
 
     companion object {
-        @Volatile private var instance: AnicoubsDatabase? = null
+        @Volatile
+        private var instance: AnicoubsDatabase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -32,9 +33,11 @@ abstract class AnicoubsDatabase : RoomDatabase() {
         }
 
         private fun buildDatabase(context: Context) =
-                Room.databaseBuilder(context.applicationContext,
-                    AnicoubsDatabase::class.java, "anicoubs.db")
-                   // .fallbackToDestructiveMigration()
-                    .build()
+            Room.databaseBuilder(
+                context.applicationContext,
+                AnicoubsDatabase::class.java, "anicoubs.db"
+            )
+                // .fallbackToDestructiveMigration()
+                .build()
     }
 }

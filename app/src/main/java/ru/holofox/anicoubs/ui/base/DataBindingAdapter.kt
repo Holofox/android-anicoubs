@@ -22,7 +22,8 @@ abstract class DataBindingAdapter<T>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBindingViewHolder<T> {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = DataBindingUtil.inflate<ViewDataBinding>(layoutInflater, viewType, parent, false)
+        val binding =
+            DataBindingUtil.inflate<ViewDataBinding>(layoutInflater, viewType, parent, false)
 
         return DataBindingViewHolder(binding, variableId)
     }
@@ -38,7 +39,8 @@ abstract class DataBindingAdapter<T>(
                     }
                 }
                 for (clickableId in clickableIds) {
-                    holder.itemView.findViewById<View>(clickableId)?.setOnClickListener(clickListener)
+                    holder.itemView.findViewById<View>(clickableId)
+                        ?.setOnClickListener(clickListener)
                 }
             }
         }
@@ -49,7 +51,7 @@ abstract class DataBindingAdapter<T>(
         this.list = list
     }
 
-   fun setOnItemViewClickListener(
+    fun setOnItemViewClickListener(
         onItemViewClick: (view: View, model: T, position: Int) -> Unit,
         vararg ids: Int
     ) {

@@ -98,8 +98,10 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
     private fun setupBottomNavigationBar() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_nav)
 
-        val navGraphIds = listOf(R.navigation.timeline, R.navigation.postponed,
-            R.navigation.suggest, R.navigation.settings)
+        val navGraphIds = listOf(
+            R.navigation.timeline, R.navigation.postponed,
+            R.navigation.suggest, R.navigation.settings
+        )
 
         // Setup the bottom navigation view with a list of navigation graphs
         val controller = bottomNavigationView.setupWithNavController(
@@ -173,23 +175,23 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
 
     private fun observeChannelResponse() {
         viewModel.channelResponse.observe(this, EventObserver { channel ->
-        //    if (channel.meta.vkontakte == null) {
-                saveVideo(channel)
-        /*    } else {
-                channel.meta.vkontakte?.let {
-                    if (it.isEmpty() || it.matches(REGEX_NUMERIC_CHANNEL_ID))
-                        saveVideo(channel)
-                    else
-                        viewModel.getUser(it)
-                }
-            } */
+            //    if (channel.meta.vkontakte == null) {
+            saveVideo(channel)
+            /*    } else {
+                    channel.meta.vkontakte?.let {
+                        if (it.isEmpty() || it.matches(REGEX_NUMERIC_CHANNEL_ID))
+                            saveVideo(channel)
+                        else
+                            viewModel.getUser(it)
+                    }
+                } */
         })
     }
 
     private fun observeUserResponse() {
         viewModel.userResponse.observe(this, EventObserver { user ->
             val channel = viewModel.channelResponse.value!!.peekContent()
-                channel.meta.vkontakte = "id"+user.response[0].id.toString()
+            channel.meta.vkontakte = "id" + user.response[0].id.toString()
 
             saveVideo(channel)
         })
@@ -215,7 +217,7 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
                 .mapIndexed { _, s ->
                     s.title.replace(REGEX_ALPHABETIC, "")
                 }
-                .filterNot { it.isDigitsOnly() || it in RESERVED_TAGS || it.isEmpty()}
+                .filterNot { it.isDigitsOnly() || it in RESERVED_TAGS || it.isEmpty() }
                 .joinToString(separator = ", #", prefix = "#", postfix = ".")
 
             description = "$description\n\nТеги: $filteredTags"
@@ -253,11 +255,12 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
         val coub = viewModel.coubResponse.value!!.peekContent()
 
         val category = resources.getStringArray(
-            R.array.dialog_categories_list)[viewModel.categoryId.value!!]
+            R.array.dialog_categories_list
+        )[viewModel.categoryId.value!!]
 
         val title = coub.title
             .replace(REGEX_ALL_BRACKETS, "")
-            .replace("#","")
+            .replace("#", "")
             .capitalize()
 
         val attachment = "video" + video.ownerId.toString() + "_" + video.videoId
@@ -299,13 +302,15 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
                 val inputField = dialog.getInputField()
                 val isValid = REGEX_COUB_URL.containsMatchIn(input = text)
 
-                inputField.error = if (isValid) null else getString(R.string.dialog_warning_not_valid_url)
+                inputField.error =
+                    if (isValid) null else getString(R.string.dialog_warning_not_valid_url)
                 if (isValid) viewModel.onCoubLinkEntered(text.toString())
                 dialog.setActionButtonEnabled(WhichButton.POSITIVE, isValid)
             }
             checkBoxPrompt(
                 R.string.dialog_checkbox_postponed,
-                isCheckedDefault = viewModel.isPostponedPublish.value!!) {
+                isCheckedDefault = viewModel.isPostponedPublish.value!!
+            ) {
                 viewModel.onPostponedPublish(it)
             }
             negativeButton(R.string.dialog_button_cancel)
@@ -355,7 +360,8 @@ class MainActivity : LocaleAppCombatActivity(), KodeinAware {
     companion object {
         private const val TAG = "MainActivity"
         private val RESERVED_TAGS = listOf(
-            "preview", "cool", "sad", "fun", "nice", "scary", "news", "happy", "music")
+            "preview", "cool", "sad", "fun", "nice", "scary", "news", "happy", "music"
+        )
         private val REGEX_COUB_URL = "^http(s)?://coub.com/view/(\\w{5,6})$".toRegex()
         private val REGEX_ALL_BRACKETS = "([\\[({][A-Za-zА-Яа-я0-9ё]*[])}])".toRegex()
         private val REGEX_NUMERIC_CHANNEL_ID = "^id[0-9]+\$".toRegex()

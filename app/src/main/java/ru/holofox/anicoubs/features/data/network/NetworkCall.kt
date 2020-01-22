@@ -27,7 +27,7 @@ import kotlin.coroutines.suspendCoroutine
  */
 class NetworkCall<T> {
     var result: NetworkResult<T>? = null
-    val listeners = mutableListOf<NetworkListener<T>>()
+    private val listeners = mutableListOf<NetworkListener<T>>()
 
     private val uiHandler = Handler(Looper.getMainLooper())
 

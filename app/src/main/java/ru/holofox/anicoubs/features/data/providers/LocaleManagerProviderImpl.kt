@@ -44,7 +44,7 @@ object LocaleManagerProviderImpl : LocaleManagerProvider {
 
     private fun persistLanguage(context: Context, language: UnitSystem) {
         val preferences = getPreferences(context)
-            preferences.edit().putString(KEY_NAME, language.name).apply()
+        preferences.edit().putString(KEY_NAME, language.name).apply()
     }
 
     private fun updateResources(context: Context, language: UnitSystem): Context {
@@ -53,8 +53,8 @@ object LocaleManagerProviderImpl : LocaleManagerProvider {
 
         val resources = context.resources
         val configuration = Configuration(resources.configuration)
-            configuration.setLocale(locale)
-            configuration.setLayoutDirection(locale)
+        configuration.setLocale(locale)
+        configuration.setLayoutDirection(locale)
 
         return context.createConfigurationContext(configuration)
     }

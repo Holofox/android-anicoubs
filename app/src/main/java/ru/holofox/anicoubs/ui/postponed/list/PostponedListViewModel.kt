@@ -34,10 +34,10 @@ class PostponedListViewModel(
         get() = _eventNetworkError
 
     private val _isNetworkErrorShown = savedStateHandle.getLiveData(NETWORK_ERROR_SHOWN, false)
-    val isNetworkErrorShown : LiveData<Boolean>
+    val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
-    private val _snackBar =MutableLiveData<SingleEvent<String>>()
+    private val _snackBar = MutableLiveData<SingleEvent<String>>()
     val snackbar: LiveData<SingleEvent<String>>
         get() = _snackBar
 
@@ -53,8 +53,7 @@ class PostponedListViewModel(
             savedStateHandle.set(NETWORK_ERROR_SHOWN, false)
         } catch (error: VKWallRepositoryError) {
             _eventNetworkError.value = true
-        }
-        finally {
+        } finally {
             _isLoading.value = false
         }
     }

@@ -14,7 +14,7 @@ class CoubNetworkDataSourceImpl(
     private val coubApiService: CoubApiService
 ) : CoubNetworkDataSource {
 
-    override suspend fun fetchFeed(page: Int, per_page: Int) : NetworkCall<CoubTimelineResponse> {
+    override suspend fun fetchFeed(page: Int, per_page: Int): NetworkCall<CoubTimelineResponse> {
         val response = NetworkCall<CoubTimelineResponse>()
 
         try {

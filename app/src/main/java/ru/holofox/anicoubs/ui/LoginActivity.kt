@@ -26,8 +26,10 @@ class LoginActivity : LocaleAppCombatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         binding.apply {
             loginButton.setOnClickListener {
-                VK.login(this@LoginActivity,
-                    arrayListOf(VKScope.WALL, VKScope.VIDEO, VKScope.OFFLINE))
+                VK.login(
+                    this@LoginActivity,
+                    arrayListOf(VKScope.WALL, VKScope.VIDEO, VKScope.OFFLINE)
+                )
             }
         }
 
@@ -43,11 +45,12 @@ class LoginActivity : LocaleAppCombatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val callback = object: VKAuthCallback {
+        val callback = object : VKAuthCallback {
             override fun onLogin(token: VKAccessToken) {
                 MainActivity.startFrom(this@LoginActivity)
                 finish()
             }
+
             override fun onLoginFailed(errorCode: Int) {
                 MaterialDialog(this@LoginActivity)
                     .title(R.string.vk_unknown_error)
@@ -63,7 +66,7 @@ class LoginActivity : LocaleAppCombatActivity() {
     companion object {
         fun startFrom(context: Context) {
             val intent = Intent(context, LoginActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             context.startActivity(intent)
         }
     }

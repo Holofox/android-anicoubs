@@ -18,13 +18,15 @@ class MainViewProvider(
     private val vkVideoRepository: VKVideoRepository,
     private val vkUsersRepository: VKUsersRepository,
     private val unitProvider: UnitProvider,
-    private val savedStateHandle : SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return MainViewModel(coubRepository, holofoxRepository, vkWallRepository,
-            vkVideoRepository, vkUsersRepository, unitProvider, savedStateHandle) as T
+        return MainViewModel(
+            coubRepository, holofoxRepository, vkWallRepository,
+            vkVideoRepository, vkUsersRepository, unitProvider, savedStateHandle
+        ) as T
     }
 
 }

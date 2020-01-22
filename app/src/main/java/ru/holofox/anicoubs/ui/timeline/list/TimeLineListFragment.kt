@@ -76,9 +76,11 @@ class TimeLineListFragment : Fragment(), KodeinAware {
     }
 
     private fun observeNetworkError() {
-        viewModel.eventNetworkError.observe(viewLifecycleOwner, Observer<Boolean> { isNetworkError ->
-            if (isNetworkError) onNetworkError()
-        })
+        viewModel.eventNetworkError.observe(
+            viewLifecycleOwner,
+            Observer<Boolean> { isNetworkError ->
+                if (isNetworkError) onNetworkError()
+            })
     }
 
     private fun observeTimeline() {
@@ -93,7 +95,8 @@ class TimeLineListFragment : Fragment(), KodeinAware {
         if (!viewModel.isNetworkErrorShown.value!!) {
             binding.constraintLayout.indefiniteSnackbar(
                 message = R.string.dialog_message_no_internet_connection,
-                actionText = R.string.dialog_button_retry) {
+                actionText = R.string.dialog_button_retry
+            ) {
                 viewModel.refreshDataFromRepository()
             }
             viewModel.onNetworkErrorShown()

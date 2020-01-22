@@ -72,12 +72,12 @@ class CoubRepositoryImpl(
         }
     }
 
-    private suspend fun initTimeLineData(){
+    private suspend fun initTimeLineData() {
         if (isFetchTimeLineNeeded(ZonedDateTime.now().minusHours(1)))
             fetchTimeLine()
     }
 
-    private suspend fun fetchTimeLine()  {
+    private suspend fun fetchTimeLine() {
         try {
             val result = timelineNetworkDataSource.fetchFeed(0, 10).await()
             persistFetchedTimeLine(result)

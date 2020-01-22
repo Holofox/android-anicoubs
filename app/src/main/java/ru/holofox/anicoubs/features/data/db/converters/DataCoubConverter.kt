@@ -14,7 +14,7 @@ object DataCoubConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toDimensions(str: String?) : Dimensions? = str?.fromJson()
+    fun toDimensions(str: String?): Dimensions? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -22,7 +22,7 @@ object DataCoubConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toFileVersions(str: String?) : FileVersions? = str?.fromJson()
+    fun toFileVersions(str: String?): FileVersions? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -30,7 +30,7 @@ object DataCoubConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toAudioVersions(str: String?) : AudioVersions? = str?.fromJson()
+    fun toAudioVersions(str: String?): AudioVersions? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -38,7 +38,7 @@ object DataCoubConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toVersions(str: String?) : Versions? = str?.fromJson()
+    fun toVersions(str: String?): Versions? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -46,7 +46,7 @@ object DataCoubConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toChannel(str: String?) : Channel? = str?.fromJson()
+    fun toChannel(str: String?): Channel? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -54,7 +54,7 @@ object DataCoubConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toMediaBlocks(str: String?) : MediaBlocks? = str?.fromJson()
+    fun toMediaBlocks(str: String?): MediaBlocks? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -62,7 +62,7 @@ object DataCoubConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toTag(str: String?) : List<Tag>? = str?.fromJson()
+    fun toTag(str: String?): List<Tag>? = str?.fromJson()
 
     @TypeConverter
     @JvmStatic
@@ -70,6 +70,6 @@ object DataCoubConverter {
 
     @TypeConverter
     @JvmStatic
-    fun toCategory(str: String?) : List<Category>? = str?.fromJson()
+    fun toCategory(str: String?): List<Category>? = str?.fromJson()
 
 }

@@ -58,7 +58,8 @@ class PostponedListFragment : Fragment(), KodeinAware {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+        savedInstanceState: Bundle?
+    ): View? {
 
         binding = DataBindingUtil.inflate(
             inflater,
@@ -68,9 +69,9 @@ class PostponedListFragment : Fragment(), KodeinAware {
         )
 
         viewModelAdapter = PostponedListAdapter().apply {
-            setOnItemViewClickListener({view, item, _ ->
+            setOnItemViewClickListener({ view, item, _ ->
                 when (view.id) {
-                   // R.id.cardView_postponed -> onShowPostponedDetail(view)
+                    // R.id.cardView_postponed -> onShowPostponedDetail(view)
                     R.id.imageView_more -> onItemMore(view, item)
                 }
             }, R.id.cardView_postponed, R.id.imageView_more)
@@ -111,7 +112,8 @@ class PostponedListFragment : Fragment(), KodeinAware {
         if (!viewModel.isNetworkErrorShown.value!!) {
             binding.root.indefiniteSnackbar(
                 message = R.string.dialog_message_no_internet_connection,
-                actionText = R.string.dialog_button_retry) {
+                actionText = R.string.dialog_button_retry
+            ) {
                 viewModel.refreshDataFromRepository()
             }
             viewModel.onNetworkErrorShown()
@@ -125,7 +127,8 @@ class PostponedListFragment : Fragment(), KodeinAware {
                     R.id.option_item_publish -> {
                         onDialogConfirmation(
                             title = R.string.dialog_title_publish_entry,
-                            message = R.string.dialog_message_confirm_publish) {
+                            message = R.string.dialog_message_confirm_publish
+                        ) {
                             viewModel.onItemPublish(item)
                         }
                         true
@@ -137,7 +140,8 @@ class PostponedListFragment : Fragment(), KodeinAware {
                     R.id.option_item_delete -> {
                         onDialogConfirmation(
                             title = R.string.dialog_title_delete_entry,
-                            message = R.string.dialog_message_confirm_delete) {
+                            message = R.string.dialog_message_confirm_delete
+                        ) {
                             viewModel.onItemDelete(item)
                         }
                         true

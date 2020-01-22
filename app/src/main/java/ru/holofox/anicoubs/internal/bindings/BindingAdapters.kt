@@ -27,9 +27,11 @@ fun bindImageUrl(imageView: ImageView, url: String?) {
     url?.let {
         GlideApp.with(imageView.context)
             .load(url)
-            .apply(RequestOptions()
-                .placeholder(R.color.colorBackground)
-                .error(R.color.colorBackground))
+            .apply(
+                RequestOptions()
+                    .placeholder(R.color.colorBackground)
+                    .error(R.color.colorBackground)
+            )
             .into(imageView)
     }
 }

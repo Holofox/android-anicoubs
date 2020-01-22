@@ -9,7 +9,7 @@ import ru.holofox.anicoubs.features.domain.repositories.vk.VKWallRepository
 class PostponedListViewModelProvider(
     private val vkWallRepository: VKWallRepository,
     private val vkVideoRepository: VKVideoRepository,
-    private val savedStateHandle : SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")

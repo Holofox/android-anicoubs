@@ -1,5 +1,6 @@
 @file:JvmName("DesignSnackbarKt")
 @file:Suppress("NOTHING_TO_INLINE")
+
 package ru.holofox.anicoubs.ui.extensions
 
 import android.view.View

@@ -10,6 +10,6 @@ import ru.holofox.anicoubs.features.data.network.api.coub.models.responses.CoubC
 interface CoubRepository {
     val timeline: LiveData<List<UnitSpecificTimelineMinimalEntry>>
     suspend fun getTimeLine(clean: Boolean)
-    suspend fun getCoub(permalink: String) : NetworkCall<CoubEntry>
-    suspend fun getChannel(id: Int) : NetworkCall<CoubChannelResponse>
+    suspend fun getCoub(permalink: String): NetworkCall<CoubEntry>
+    suspend fun getChannel(id: Int): NetworkCall<CoubChannelResponse>
 }

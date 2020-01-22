@@ -13,7 +13,7 @@ import ru.holofox.anicoubs.ui.base.ScopedViewModel
 class TimeLineListViewModel(
     private val coubRepository: CoubRepository,
     private val unitProvider: UnitProvider,
-    private val savedStateHandle : SavedStateHandle
+    private val savedStateHandle: SavedStateHandle
 ) : ScopedViewModel() {
 
     /* private val unitSystem = unitProvider.getUnitProvider()
@@ -33,7 +33,7 @@ class TimeLineListViewModel(
     val eventNetworkError: LiveData<Boolean>
         get() = _eventNetworkError
 
-    val isNetworkErrorShown : LiveData<Boolean>
+    val isNetworkErrorShown: LiveData<Boolean>
         get() = _isNetworkErrorShown
 
     init {
@@ -46,11 +46,9 @@ class TimeLineListViewModel(
             _isLoading.value = true
             _eventNetworkError.value = false
             savedStateHandle.set(NETWORK_ERROR_SHOWN, false)
-        }
-        catch (error: CoubRepositoryError) {
+        } catch (error: CoubRepositoryError) {
             _eventNetworkError.value = true
-        }
-        finally {
+        } finally {
             _isLoading.value = false
         }
     }
