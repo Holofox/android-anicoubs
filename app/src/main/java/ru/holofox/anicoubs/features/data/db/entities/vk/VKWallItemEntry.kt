@@ -16,8 +16,6 @@ data class VKWallItemEntry(
     @SerializedName("owner_id")
     val ownerId: Int,
     val date: Long,
-    @SerializedName("postponed_id")
-    val postponedId: Int,
     @SerializedName("marked_as_ads")
     val markedAsAds: Int,
     @SerializedName("post_type")

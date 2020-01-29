@@ -14,13 +14,12 @@ interface UnitSpecificVKWallEntry {
     val fromId: Int
     val id: Int
     val isFavorite: Boolean
-    val likes: VKWallLikes
+    val likes: VKWallLikes?
     val markedAsAds: Int
     val ownerId: Int
     val postSource: VKWallPostSource
     val postType: String
-    val postponedId: Int
-    val reposts: VKWallReposts
+    val reposts: VKWallReposts?
     val text: String
-    val views: VKWallViews
+    val views: VKWallViews?
 }

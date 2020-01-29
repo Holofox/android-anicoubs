@@ -36,8 +36,6 @@ data class VKWallEntry(
     override val postSource: VKWallPostSource,
     @ColumnInfo(name = "postType")
     override val postType: String,
-    @ColumnInfo(name = "postponedId")
-    override val postponedId: Int,
     @ColumnInfo(name = "reposts")
     override val reposts: VKWallReposts,
     @ColumnInfo(name = "text")
