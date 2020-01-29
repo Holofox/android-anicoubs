@@ -19,25 +19,35 @@ Languages, libraries and tools used
 
 ## Requirements
 * JDK 1.8
-* [Android Studio 3.6 Preview](https://developer.android.com/studio/preview/)
-* Android 9 ([API level 28](https://developer.android.com/studio/releases/platforms#9.0))
+* [Android Studio 3.6 RC1](https://developer.android.com/studio/preview/)
+* Android 10 ([API level 29](https://developer.android.com/studio/releases/platforms#10))
 * Latest Android SDK Tools and build tools.
 
 ## Architecture
 This project follows Android architecture guidelines that are based on MVVM.
 
 ## Project structure
-- data
-  - db
-    - converters
-    - entity
-    - unitlocalized
-  - network
-    - api
-    - data
-    - response
-  - provider
-  - repository
+- features
+  - data
+    - db
+      - converters
+      - entities
+      - unitlocalized
+    - network
+      - api
+      - datasources
+    - providers
+    - repositories
+  - domain
+    - db
+      - converters
+      - entities
+      - unitlocalized
+    - network
+      - api
+      - datasources
+    - providers
+    - repositories
 - internal
   - bindings
   - enums
