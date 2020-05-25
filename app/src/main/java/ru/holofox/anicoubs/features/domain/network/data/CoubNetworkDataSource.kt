@@ -1,8 +1,8 @@
 package ru.holofox.anicoubs.features.domain.network.data
 
-import ru.holofox.anicoubs.features.data.network.api.coub.models.responses.CoubChannelResponse
 import ru.holofox.anicoubs.features.data.db.entities.coub.CoubEntry
 import ru.holofox.anicoubs.features.data.network.NetworkCall
+import ru.holofox.anicoubs.features.data.network.api.coub.models.responses.CoubChannelResponse
 import ru.holofox.anicoubs.features.data.network.api.coub.models.responses.CoubTimelineResponse
 
 interface CoubNetworkDataSource {

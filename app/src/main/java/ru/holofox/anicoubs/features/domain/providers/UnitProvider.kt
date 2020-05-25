@@ -1,8 +1,7 @@
 package ru.holofox.anicoubs.features.domain.providers
 
-import androidx.annotation.StringRes
 import androidx.annotation.PluralsRes
-
+import androidx.annotation.StringRes
 import ru.holofox.anicoubs.internal.enums.UnitSystem
 
 interface UnitProvider {

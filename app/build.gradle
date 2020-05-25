@@ -14,8 +14,8 @@ android {
         applicationId "ru.holofox.anicoubs"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
@@ -26,7 +26,10 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            // Enables code shrinking, obfuscation, and optimization
+            minifyEnabled true
+            // Enables resource shrinking
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -39,12 +42,11 @@ android {
         jvmTarget = 1.8
     }
 
-    buildToolsVersion = '29.0.2'
+    buildToolsVersion = '29.0.3'
 
     dataBinding {
         enabled = true
     }
-
 }
 
 androidExtensions {
@@ -54,7 +56,7 @@ androidExtensions {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.2.0-alpha01'
+    implementation 'androidx.appcompat:appcompat:1.3.0-alpha01'
 
     // Navigation
     implementation "android.arch.navigation:navigation-fragment:$navigation_version"
@@ -62,15 +64,15 @@ dependencies {
     implementation "android.arch.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$navigation_version"
 
-    implementation "androidx.core:core-ktx:1.2.0-rc01"
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+    implementation "androidx.core:core-ktx:1.4.0-alpha01"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta6'
 
     // Room
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0-rc03'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc03'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-rc03'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0-alpha03'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.0-alpha03'
     kapt "androidx.room:room-compiler:$room_version"
 
     // Gson
@@ -102,10 +104,10 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     // Preference
-    implementation 'androidx.preference:preference:1.1.0'
+    implementation 'androidx.preference:preference:1.1.1'
 
     // New Material Design
-    implementation 'com.google.android.material:material:1.2.0-alpha04'
+    implementation 'com.google.android.material:material:1.2.0-alpha06'
 
     // Facebook shimmer effect dependency
     implementation 'com.facebook.shimmer:shimmer:0.4.0@aar'

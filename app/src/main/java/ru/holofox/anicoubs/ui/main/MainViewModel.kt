@@ -6,14 +6,12 @@ import androidx.lifecycle.SavedStateHandle
 import kotlinx.coroutines.launch
 import ru.holofox.anicoubs.R
 import ru.holofox.anicoubs.features.data.db.entities.coub.CoubEntry
-import ru.holofox.anicoubs.features.data.network.api.vk.builders.VKParametersBuilder
-import java.util.*
-
 import ru.holofox.anicoubs.features.data.network.NetworkException
-import ru.holofox.anicoubs.features.data.network.await
 import ru.holofox.anicoubs.features.data.network.api.coub.models.responses.CoubChannelResponse
+import ru.holofox.anicoubs.features.data.network.api.vk.builders.VKParametersBuilder
 import ru.holofox.anicoubs.features.data.network.api.vk.models.responses.VKUsersGetResponse
 import ru.holofox.anicoubs.features.data.network.api.vk.models.responses.video.VKVideoSaveResponse
+import ru.holofox.anicoubs.features.data.network.await
 import ru.holofox.anicoubs.features.domain.providers.UnitProvider
 import ru.holofox.anicoubs.features.domain.repositories.CoubRepository
 import ru.holofox.anicoubs.features.domain.repositories.HolofoxRepository
@@ -23,6 +21,7 @@ import ru.holofox.anicoubs.features.domain.repositories.vk.VKWallRepository
 import ru.holofox.anicoubs.internal.VKVideoRepositoryError
 import ru.holofox.anicoubs.internal.observer.SingleEvent
 import ru.holofox.anicoubs.ui.base.ScopedViewModel
+import java.util.*
 
 class MainViewModel(
     private val coubRepository: CoubRepository,

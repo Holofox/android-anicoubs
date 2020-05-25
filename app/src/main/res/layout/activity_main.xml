@@ -51,7 +51,6 @@
                 app:fabSize="normal"
                 app:layout_anchor="@id/bottom_nav"
                 app:layout_anchorGravity="top|end"
-                app:layout_behavior="ru.holofox.anicoubs.ui.extensions.behavior.BottomNavigationFABBehavior"
                 app:useCompatPadding="true"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -63,7 +62,6 @@
                 android:layout_gravity="bottom"
                 app:itemIconTint="@drawable/bottom_navigation_colors"
                 app:itemTextColor="@drawable/bottom_navigation_colors"
-                app:layout_behavior="ru.holofox.anicoubs.ui.extensions.behavior.BottomNavigationBehavior"
                 app:menu="@menu/bottom_nav" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

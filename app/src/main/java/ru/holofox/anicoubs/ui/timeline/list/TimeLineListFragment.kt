@@ -1,6 +1,5 @@
 package ru.holofox.anicoubs.ui.timeline.list
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.closestKodein
 import org.kodein.di.generic.instance
-
 import ru.holofox.anicoubs.R
 import ru.holofox.anicoubs.databinding.TimelineListFragmentBinding
 import ru.holofox.anicoubs.ui.extensions.indefiniteSnackbar
@@ -60,6 +58,7 @@ class TimeLineListFragment : Fragment(), KodeinAware {
         binding.timelineListViewModel = viewModel
 
         viewModelAdapter = TimelineAdapter().apply {
+            //TODO: Show detail page
             setOnItemViewClickListener({ view, _, _ ->
                 // showTimelineDetail(view)
             }, R.id.cardView_timeline)

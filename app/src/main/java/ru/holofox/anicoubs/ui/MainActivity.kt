@@ -7,15 +7,10 @@ import android.os.Bundle
 import androidx.core.text.isDigitsOnly
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
-import androidx.navigation.NavController
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.ui.setupActionBarWithNavController
-
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.math.abs
-import ru.holofox.anicoubs.R
-
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.WhichButton
 import com.afollestad.materialdialogs.actions.setActionButtonEnabled
@@ -25,15 +20,16 @@ import com.afollestad.materialdialogs.input.getInputField
 import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
-
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.closestKodein
 import org.kodein.di.generic.instance
-import ru.holofox.anicoubs.features.data.network.api.vk.builders.VKParametersBuilder
-import ru.holofox.anicoubs.features.data.network.api.coub.models.responses.CoubChannelResponse
-import ru.holofox.anicoubs.features.data.network.api.vk.models.responses.video.VKVideoSaveResponse
+import ru.holofox.anicoubs.R
 import ru.holofox.anicoubs.databinding.ActivityMainBinding
+import ru.holofox.anicoubs.features.data.network.api.coub.models.responses.CoubChannelResponse
+import ru.holofox.anicoubs.features.data.network.api.vk.builders.VKParametersBuilder
+import ru.holofox.anicoubs.features.data.network.api.vk.models.responses.video.VKVideoSaveResponse
 import ru.holofox.anicoubs.internal.Constants
 import ru.holofox.anicoubs.internal.observer.EventObserver
 import ru.holofox.anicoubs.ui.base.LocaleAppCombatActivity
@@ -42,6 +38,7 @@ import ru.holofox.anicoubs.ui.extensions.setupWithNavController
 import ru.holofox.anicoubs.ui.extensions.toast
 import ru.holofox.anicoubs.ui.main.MainViewModel
 import ru.holofox.anicoubs.ui.main.MainViewProvider
+import kotlin.math.abs
 
 class MainActivity : LocaleAppCombatActivity(), KodeinAware {
 

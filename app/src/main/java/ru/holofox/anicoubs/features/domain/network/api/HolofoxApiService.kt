@@ -2,17 +2,14 @@ package ru.holofox.anicoubs.features.domain.network.api
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import kotlinx.coroutines.Deferred
-
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
-
-import ru.holofox.anicoubs.features.domain.network.ConnectivityInterceptor
 import ru.holofox.anicoubs.features.data.network.api.hf.models.HolofoxCheckChannelResponse
+import ru.holofox.anicoubs.features.domain.network.ConnectivityInterceptor
 
 interface HolofoxApiService {
 

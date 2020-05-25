@@ -7,10 +7,9 @@ import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Build
 import androidx.preference.PreferenceManager
-import java.util.*
 import ru.holofox.anicoubs.features.domain.providers.LocaleManagerProvider
-
 import ru.holofox.anicoubs.internal.enums.UnitSystem
+import java.util.*
 
 object LocaleManagerProviderImpl : LocaleManagerProvider {
 

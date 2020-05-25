@@ -1,8 +1,8 @@
 package ru.holofox.anicoubs.internal.bindings
 
 import android.text.format.DateUtils
-import androidx.databinding.BindingConversion
 import android.view.View
+import androidx.databinding.BindingConversion
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneId
 

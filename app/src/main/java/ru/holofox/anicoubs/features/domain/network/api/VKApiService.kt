@@ -7,8 +7,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Url
-import ru.holofox.anicoubs.features.domain.network.ConnectivityInterceptor
 import ru.holofox.anicoubs.features.data.network.api.vk.models.responses.video.VKVideoUploadResponse
+import ru.holofox.anicoubs.features.domain.network.ConnectivityInterceptor
 
 interface VKApiService {
 

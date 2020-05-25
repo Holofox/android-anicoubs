@@ -1,11 +1,11 @@
 package ru.holofox.anicoubs.features.data.network.api.vk.services
 
-import ru.holofox.anicoubs.features.data.network.api.vk.builders.VKParametersBuilder
 import ru.holofox.anicoubs.features.data.network.api.vk.ResponseApiParser
 import ru.holofox.anicoubs.features.data.network.api.vk.ResponseApiParserToBoolean
+import ru.holofox.anicoubs.features.data.network.api.vk.VKBaseApiCommand
+import ru.holofox.anicoubs.features.data.network.api.vk.builders.VKParametersBuilder
 import ru.holofox.anicoubs.features.data.network.api.vk.models.responses.wall.VKWallGetResponse
 import ru.holofox.anicoubs.features.data.network.api.vk.models.responses.wall.VKWallPostResponse
-import ru.holofox.anicoubs.features.data.network.api.vk.VKBaseApiCommand
 
 class VKApiWallService {
     companion object METHODS {

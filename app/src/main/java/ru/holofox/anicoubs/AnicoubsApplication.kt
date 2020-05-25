@@ -6,10 +6,8 @@ import android.content.res.Configuration
 import androidx.lifecycle.SavedStateHandle
 import androidx.preference.PreferenceManager
 import com.jakewharton.threetenabp.AndroidThreeTen
-
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.VKTokenExpiredHandler
-
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -17,22 +15,34 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
-
-import ru.holofox.anicoubs.features.domain.network.api.*
 import ru.holofox.anicoubs.features.data.db.AnicoubsDatabase
 import ru.holofox.anicoubs.features.data.network.ConnectivityInterceptorImpl
-import ru.holofox.anicoubs.features.data.network.datasources.*
-import ru.holofox.anicoubs.features.data.providers.*
+import ru.holofox.anicoubs.features.data.network.datasources.CoubNetworkDataSourceImpl
+import ru.holofox.anicoubs.features.data.network.datasources.HolofoxNetworkDataSourceImpl
+import ru.holofox.anicoubs.features.data.network.datasources.VKNetworkDataSourceImpl
+import ru.holofox.anicoubs.features.data.providers.ConnectivityProviderImpl
+import ru.holofox.anicoubs.features.data.providers.LocaleManagerProviderImpl
+import ru.holofox.anicoubs.features.data.providers.UnitProviderImpl
 import ru.holofox.anicoubs.features.data.repositories.CoubRepositoryImpl
 import ru.holofox.anicoubs.features.data.repositories.HolofoxRepositoryImpl
-import ru.holofox.anicoubs.features.data.repositories.vk.*
+import ru.holofox.anicoubs.features.data.repositories.vk.VKUsersRepositoryImpl
+import ru.holofox.anicoubs.features.data.repositories.vk.VKVideoRepositoryImpl
+import ru.holofox.anicoubs.features.data.repositories.vk.VKWallRepositoryImpl
 import ru.holofox.anicoubs.features.domain.network.ConnectivityInterceptor
-import ru.holofox.anicoubs.features.domain.network.data.*
-import ru.holofox.anicoubs.features.domain.providers.*
+import ru.holofox.anicoubs.features.domain.network.api.CoubApiService
+import ru.holofox.anicoubs.features.domain.network.api.HolofoxApiService
+import ru.holofox.anicoubs.features.domain.network.api.VKApiService
+import ru.holofox.anicoubs.features.domain.network.data.CoubNetworkDataSource
+import ru.holofox.anicoubs.features.domain.network.data.HolofoxNetworkDataSource
+import ru.holofox.anicoubs.features.domain.network.data.VKNetworkDataSource
+import ru.holofox.anicoubs.features.domain.providers.ConnectivityProvider
+import ru.holofox.anicoubs.features.domain.providers.LocaleManagerProvider
+import ru.holofox.anicoubs.features.domain.providers.UnitProvider
 import ru.holofox.anicoubs.features.domain.repositories.CoubRepository
 import ru.holofox.anicoubs.features.domain.repositories.HolofoxRepository
-import ru.holofox.anicoubs.features.domain.repositories.vk.*
-
+import ru.holofox.anicoubs.features.domain.repositories.vk.VKUsersRepository
+import ru.holofox.anicoubs.features.domain.repositories.vk.VKVideoRepository
+import ru.holofox.anicoubs.features.domain.repositories.vk.VKWallRepository
 import ru.holofox.anicoubs.ui.LoginActivity
 import ru.holofox.anicoubs.ui.main.MainViewProvider
 import ru.holofox.anicoubs.ui.postponed.list.PostponedListViewModelProvider

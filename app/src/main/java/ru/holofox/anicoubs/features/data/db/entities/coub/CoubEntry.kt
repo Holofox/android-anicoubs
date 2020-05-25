@@ -1,6 +1,8 @@
 package ru.holofox.anicoubs.features.data.db.entities.coub
 
-import androidx.room.*
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import ru.holofox.anicoubs.features.data.network.api.coub.models.timeline.*
 
