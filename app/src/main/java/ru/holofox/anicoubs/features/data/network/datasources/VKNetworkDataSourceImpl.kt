@@ -26,8 +26,8 @@ class VKNetworkDataSourceImpl(
                 response.onSuccess(result)
             }
 
-            override fun fail(error: VKApiExecutionException) {
-                response.onError(NetworkException(error.detailMessage))
+            override fun fail(error: Exception) {
+                response.onError(NetworkException(error.localizedMessage))
             }
         })
 

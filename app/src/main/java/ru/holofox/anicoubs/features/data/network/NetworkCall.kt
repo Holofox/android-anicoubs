@@ -107,7 +107,7 @@ typealias NetworkListener<T> = (NetworkResult<T>) -> Unit
 /**
  * Throwable to use in network errors.
  */
-class NetworkException(message: String) : Throwable(message)
+class NetworkException(message: String?) : Throwable(message)
 
 /**
  * Suspend function to use callback-based [NetworkCall] in coroutines
