@@ -1,5 +1,6 @@
 package ru.holofox.anicoubs.features.data.repositories
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.holofox.anicoubs.features.data.network.NetworkCall
@@ -23,6 +24,7 @@ class HolofoxRepositoryImpl(
                     .await()
                 response.onSuccess(result)
             } catch (error: NoConnectivityException) {
+                Log.e("CheckInBlackList", error.message.toString())
                 response.onError(NetworkException(error.message.toString()))
             }
             return@withContext response

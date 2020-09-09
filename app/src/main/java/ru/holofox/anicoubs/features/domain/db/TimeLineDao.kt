@@ -10,7 +10,6 @@ import ru.holofox.anicoubs.features.data.db.unitlocalized.coub.TimelineMinimalEn
 @Dao
 @SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
 @TypeConverters(DateConverter::class)
-
 interface TimeLineDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(items: List<CoubEntry>)

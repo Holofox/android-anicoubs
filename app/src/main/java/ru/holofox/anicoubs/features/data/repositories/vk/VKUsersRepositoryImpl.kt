@@ -1,5 +1,6 @@
 package ru.holofox.anicoubs.features.data.repositories.vk
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.holofox.anicoubs.features.data.network.NetworkCall
@@ -26,6 +27,7 @@ class VKUsersRepositoryImpl(
                 val result = vkNetworkDataSource.perform(VKApiUsersService.Get(parameters)).await()
                 response.onSuccess(result)
             } catch (error: NetworkException) {
+                Log.e("users.get", error.message.toString())
                 response.onError(NetworkException(error.message.toString()))
             }
             return@withContext response

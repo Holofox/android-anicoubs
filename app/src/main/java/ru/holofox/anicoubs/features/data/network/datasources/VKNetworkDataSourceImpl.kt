@@ -2,7 +2,6 @@ package ru.holofox.anicoubs.features.data.network.datasources
 
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.VKApiCallback
-import com.vk.api.sdk.exceptions.VKApiExecutionException
 import com.vk.api.sdk.internal.ApiCommand
 
 import ru.holofox.anicoubs.features.data.network.NetworkCall

@@ -15,7 +15,7 @@ import ru.holofox.anicoubs.features.domain.db.VKWallDao
 
 @Database(
     entities = [CoubEntry::class, VKWallItemEntry::class, VKGroupEntry::class],
-    version = 1
+    version = 2
 )
 
 @TypeConverters(DataCoubConverter::class, DataVKConverter::class)

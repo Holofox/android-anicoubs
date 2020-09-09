@@ -11,7 +11,8 @@ class ConnectivityProviderImpl(context: Context) : ConnectivityProvider {
     private val appContext = context.applicationContext
 
     override fun isOnline(): Boolean {
-        val connectivityManager = appContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            appContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val nw = connectivityManager.activeNetwork ?: return false
             val actNw = connectivityManager.getNetworkCapabilities(nw) ?: return false

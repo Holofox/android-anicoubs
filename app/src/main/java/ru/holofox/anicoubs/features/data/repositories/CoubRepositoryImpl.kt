@@ -1,5 +1,6 @@
 package ru.holofox.anicoubs.features.data.repositories
 
+import android.util.Log
 import androidx.lifecycle.Transformations
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -41,6 +42,7 @@ class CoubRepositoryImpl(
             val result = timelineNetworkDataSource.fetchCoub(permalink).await()
             response.onSuccess(result)
         } catch (error: NetworkException) {
+            Log.e("get.coub", error.message.toString())
             response.onError(error)
         }
 
@@ -54,6 +56,7 @@ class CoubRepositoryImpl(
             val result = timelineNetworkDataSource.fetchChannel(id).await()
             response.onSuccess(result)
         } catch (error: NetworkException) {
+            Log.e("get.channel", error.message.toString())
             response.onError(error)
         }
 
@@ -83,6 +86,7 @@ class CoubRepositoryImpl(
             val result = timelineNetworkDataSource.fetchFeed(0, 10).await()
             persistFetchedTimeLine(result)
         } catch (error: NetworkException) {
+            Log.e("fetch.feed", error.message.toString())
             throw CoubRepositoryError(error)
         }
     }

@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/timeline"
-        app:startDestination="@+id/timeline"
-        tools:ignore="UnusedNavigation">
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/timeline"
+    app:startDestination="@+id/timeline"
+    tools:ignore="UnusedNavigation">
 
     <fragment
-            android:id="@+id/timeline"
-            android:name="ru.holofox.anicoubs.ui.timeline.list.TimeLineListFragment"
-            android:label="@string/menu_timeline"
-            tools:layout="@layout/timeline_list_fragment">
+        android:id="@+id/timeline"
+        android:name="ru.holofox.anicoubs.ui.timeline.list.TimeLineListFragment"
+        android:label="@string/menu_timeline"
+        tools:layout="@layout/timeline_list_fragment">
         <action
-                android:id="@+id/action_timelineList_to_timelineDetail"
-                app:destination="@id/timelineDetail" />
+            android:id="@+id/action_timelineList_to_timelineDetail"
+            app:destination="@id/timelineDetail" />
     </fragment>
 
     <fragment
-            android:id="@+id/timelineDetail"
-            android:name="ru.holofox.anicoubs.ui.timeline.detail.TimeLineDetailFragment"
-            android:label="timeline_detail"
-            tools:layout="@layout/timeline_detail_fragment"/>
+        android:id="@+id/timelineDetail"
+        android:name="ru.holofox.anicoubs.ui.timeline.detail.TimeLineDetailFragment"
+        android:label="timeline_detail"
+        tools:layout="@layout/timeline_detail_fragment" />
 
 </navigation>

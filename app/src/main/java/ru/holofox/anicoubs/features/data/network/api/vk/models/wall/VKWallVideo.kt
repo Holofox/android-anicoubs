@@ -15,8 +15,6 @@ data class VKWallVideo(
     @SerializedName("local_views")
     val localViews: Int,
     val image: List<VKWallImageVersions>,
-    @SerializedName("is_favorite")
-    val isFavorite: Int,
     @SerializedName("access_key")
     val accessKey: String,
     val platform: String,

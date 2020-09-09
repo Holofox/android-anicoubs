@@ -1,5 +1,6 @@
 package ru.holofox.anicoubs.features.data.repositories.vk
 
+import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.holofox.anicoubs.features.data.network.NetworkCall
@@ -28,11 +29,13 @@ class VKVideoRepositoryImpl(
                 try {
                     vkApiService.uploadVideoByUrlAsync(result.uploadUrl).await()
                 } catch (error: NoConnectivityException) {
+                    Log.e("video.save", error.message.toString())
                     response.onError(NetworkException(error.message.toString()))
                 }
 
                 response.onSuccess(result)
             } catch (error: NetworkException) {
+                Log.e("video.save", error.message.toString())
                 response.onError(NetworkException(error.message.toString()))
             }
             return@withContext response
@@ -44,6 +47,7 @@ class VKVideoRepositoryImpl(
             try {
                 vkNetworkDataSource.perform(VKApiVideoService.Delete(parameters)).await()
             } catch (error: NetworkException) {
+                Log.e("video.delete", error.message.toString())
                 throw VKVideoRepositoryError(error)
             }
         }

@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/suggest"
-        app:startDestination="@+id/suggest"
-        tools:ignore="UnusedNavigation">
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/suggest"
+    app:startDestination="@+id/suggest"
+    tools:ignore="UnusedNavigation">
 
     <fragment
-            android:id="@+id/suggest"
-            android:name="ru.holofox.anicoubs.ui.suggest.list.SuggestListFragment"
-            android:label="@string/menu_suggests"
-            tools:layout="@layout/suggest_list_fragment">
+        android:id="@+id/suggest"
+        android:name="ru.holofox.anicoubs.ui.suggest.list.SuggestListFragment"
+        android:label="@string/menu_suggests"
+        tools:layout="@layout/suggest_list_fragment">
         <action
-                android:id="@+id/action_suggest_to_suggestDetail"
-                app:destination="@id/suggestDetail" />
+            android:id="@+id/action_suggest_to_suggestDetail"
+            app:destination="@id/suggestDetail" />
     </fragment>
 
     <fragment
-            android:id="@+id/suggestDetail"
-            android:name="ru.holofox.anicoubs.ui.suggest.detail.SuggestDetailFragment"
-            android:label="suggest_detail_fragment"
-            tools:layout="@layout/suggest_detail_fragment"/>
+        android:id="@+id/suggestDetail"
+        android:name="ru.holofox.anicoubs.ui.suggest.detail.SuggestDetailFragment"
+        android:label="suggest_detail_fragment"
+        tools:layout="@layout/suggest_detail_fragment" />
 
 </navigation>

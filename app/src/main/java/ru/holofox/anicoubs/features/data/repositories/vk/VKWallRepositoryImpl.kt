@@ -1,5 +1,6 @@
 package ru.holofox.anicoubs.features.data.repositories.vk
 
+import android.util.Log
 import androidx.lifecycle.Transformations
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -36,6 +37,7 @@ class VKWallRepositoryImpl(
                 val result = vkNetworkDataSource.perform(VKApiWallService.Get(parameters)).await()
                 vkWallDao.update(result.items, result.groups)
             } catch (error: NetworkException) {
+                Log.e("wall.get", error.message.toString())
                 throw VKWallRepositoryError(error)
             }
         }
@@ -46,6 +48,7 @@ class VKWallRepositoryImpl(
             try {
                 vkNetworkDataSource.perform(VKApiWallService.Post(parameters)).await()
             } catch (error: NetworkException) {
+                Log.e("wall.post", error.message.toString())
                 throw VKWallRepositoryError(error)
             }
         }
@@ -60,6 +63,7 @@ class VKWallRepositoryImpl(
             try {
                 vkNetworkDataSource.perform(VKApiWallService.Delete(parameters)).await()
             } catch (error: NetworkException) {
+                Log.e("wall.delete", error.message.toString())
                 throw VKWallRepositoryError(error)
             }
         }
